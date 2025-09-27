@@ -1,0 +1,73 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
+use App\Models\User;
+// use Illuminate\Container\Attributes\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
+class LoginController extends Controller
+{
+    public function registerForm(){
+        return view('auth.register');
+    }
+    public function register(RegisterRequest $request){
+        $user = new User();
+
+        $user->name = $request->get('name');
+        $user->surname = $request->get('surname');
+        $user->email = $request->get('email');
+        $user->password = Hash::make($request->get('password'));
+        $user->country = $request->get('country');
+        $user->city = $request->get('city');
+        $user->birthdate = $request->get('birthdate');
+        $user->breed = $request->get('breed');
+        $user->colour = $request->get('colour');
+        $user->genre = $request->get('genre');
+        $user->owner = $request->get('owner');
+        $user->profile_picture = 'perro-perfil.jpg';
+
+        $user->save();
+        Auth::login($user);
+
+        return redirect()->route('home');
+    }
+
+    public function loginForm(){
+        if (Auth::viaRemember()){
+            return 'Bienvenido de nuevo';
+        }
+        else{
+            if (Auth::check()){
+                return redirect()->route('home');
+            }
+            else{
+                return view('auth.login');
+            }
+        }
+    }
+
+    public function login(Request $request){
+        $credenciales = $request->only('email', 'password');
+
+        if (Auth::guard('web')->attempt($credenciales)){
+            $request->session()->regenerate();
+            return redirect()->route('home');
+        }
+        else{
+            $error = 'Usuario o contraseña incorrectos';
+            return view('home', compact('error'));
+        }
+    }
+
+    public function logout(Request $request){
+        Auth::guard('web')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('home');
+    }
+}

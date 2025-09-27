@@ -1,0 +1,505 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/************** CABECERA *******************/
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: linear-gradient(to right, #d9ffe1, #fcd5ce);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    gap: 25px;
+}
+
+.header a {
+    text-decoration: none;
+}
+
+.home {
+    width: 48px;
+    height: 48px;
+    background-color: #fff;
+    border: 2px solid #be9071;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(255, 180, 160, 0.3);
+}
+
+.home:hover {
+    background-color: #ffeae1;
+    border-color: #fcbfbe;
+    box-shadow: 0 4px 12px rgba(255, 140, 120, 0.3);
+    transform: scale(1.08);
+}
+
+.home img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+/* Responsividad para móviles */
+@media screen and (max-width: 600px) {
+    .header {
+        height: 60px;
+        gap: 16px;
+        padding: 0 10px;
+    }
+
+    .home {
+        width: 40px;
+        height: 40px;
+    }
+
+    .home img {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/******************** HOME ***********************/
+
+.home-feed {
+    padding: 100px 20px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.bienvenida {
+    font-size: 28px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #444;
+}
+
+/* Grid de tarjetas de usuario */
+.user-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+/* Tarjeta de usuario */
+.user-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.user-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+.user-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.user-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 12px;
+    border: 2px solid #ffc8c8;
+    background-color: #fdf2f2;
+}
+
+.user-info h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.user-info p {
+    margin-top: 6px;
+    font-size: 14px;
+    color: #888;
+}
+
+/* Responsive padding fix */
+@media screen and (max-width: 768px) {
+    .home-feed {
+        padding-top: 90px;
+    }
+}
+
+/******************** PERFIL ************************/
+body {
+    background: linear-gradient(to bottom right, #ffffff, #f0f8ff);
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding-top: 1000px;
+}
+
+.pet-profile-container {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+.pet-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.pet-card:hover {
+    transform: scale(1.01);
+}
+
+.pet-avatar img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 4px solid #4a7c9b;
+}
+
+.pet-info h2 {
+    margin-bottom: 10px;
+    color: #4a7c9b;
+}
+
+.pet-info p {
+    font-size: 16px;
+    color: #444;
+    margin: 8px 0;
+}
+
+@media screen and (max-width: 600px) {
+    .pet-card {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .pet-avatar img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/******************** EDITAR PERFIL ***********************/
+/* FORMULARIO */
+.central {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #fffaf4;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-actualizar-perfil label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+    color: #444;
+}
+
+.form-actualizar-perfil input[type="text"],
+.form-actualizar-perfil input[type="email"],
+.form-actualizar-perfil input[type="password"],
+.form-actualizar-perfil input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 14px;
+}
+
+.form-actualizar-perfil .btn-actualizar {
+    margin-top: 25px;
+    width: 100%;
+    padding: 12px;
+    background-color: #f4a261;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-actualizar-perfil .btn-actualizar:hover {
+    background-color: #e76f51;
+}
+
+.error {
+    color: #e63946;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+/********************* LOGIN *****************************/
+
+/* Fondo general con degradado */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Contenedor principal con efecto glass */
+.login {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Encabezado */
+.h4-login h4 {
+    text-align: center;
+    font-size: 32px;
+    color: #fff;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 2px #00000020;
+}
+
+/* Estilos de formularios */
+.form-login form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    color: #ffffffee;
+    font-weight: 600;
+    margin-bottom: 5px;
+    margin-top: 15px;
+}
+
+.input-login {
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: box-shadow 0.3s ease;
+}
+
+.input-login:focus {
+    box-shadow: 0 0 0 3px rgba(255, 209, 243, 0.6);
+}
+
+/* Botón de login */
+.continuar input[type="submit"] {
+    margin-top: 25px;
+    background: linear-gradient(to right, #ff758c, #ff7eb3);
+    border: none;
+    color: white;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.continuar input[type="submit"]:hover {
+    background: linear-gradient(to right, #fcb045, #fd1d1d);
+    transform: scale(1.03);
+}
+
+/* Mensaje de error */
+.error-login {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #b60000;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Link de registro */
+a {
+    display: block;
+    text-align: center;
+    color: #ffffffdd;
+    margin-top: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ffeecf;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/************************ REGISTRO **************************/
+
+/* === Fondo y tipografía === */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3d7e4);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* === Contenedor principal === */
+.registro {
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    overflow-y: auto;
+}
+
+/* === Encabezado === */
+.h4-registro h4 {
+    text-align: center;
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 16px;
+}
+
+/* === Formulario === */
+.form-registro form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* === Inputs y selects === */
+label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+    margin-bottom: 4px;
+}
+
+.input-registro,
+input[type="date"],
+select {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    transition: border 0.2s;
+}
+
+/* === Layout de campos dobles (lado a lado) === */
+.input-group-50 {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* === Género === */
+.genre-class {
+    width: 100%;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.genre-class label {
+    margin-right: 10px;
+}
+
+.genre-class input[type="radio"] {
+    margin-right: 5px;
+}
+
+/* === Botón === */
+.continuar input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #4e73df;
+    color: #fff;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.continuar input[type="submit"]:hover {
+    background-color: #375ac1;
+}
+
+/* === Errores === */
+.errores-registro {
+    margin-top: 10px;
+    background-color: #ffe0e0;
+    color: #b30000;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+/* === Enlace === */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 12px;
+    text-decoration: none;
+    color: #4e73df;
+}
+
+/* === Scroll interno si es necesario === */
+.form-registro {
+    overflow-y: auto;
+}
+
