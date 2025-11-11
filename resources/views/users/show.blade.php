@@ -19,7 +19,7 @@
         </div>
 
         <div class="pet-info">
-            <h2>{{ $user->name }} {{ $user->surname }}</h2>
+            <h2>{{ $user->name }}</h2>
             <p><strong>Correo:</strong> {{ $user->email }}</p>
             <p><strong>País:</strong> {{ $user->country }}</p>
             <p><strong>Ciudad:</strong> {{ $user->city }}</p>

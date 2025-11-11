@@ -36,7 +36,7 @@
                     </div>
                 @endif
             @empty
-                <p>No hay otros usuarios registrados todavía!</p>
+                <p>No hay otros usuarios registrados todavía.</p>
             @endforelse
         </section>
     </main>
