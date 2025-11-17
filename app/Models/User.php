@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Image;
+
 
 class User extends Authenticatable
 {
@@ -53,4 +55,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
+
 }
