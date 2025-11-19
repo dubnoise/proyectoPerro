@@ -57,9 +57,14 @@ class UserController extends Controller
         $age = floor($age);
         $months = floor($months);
 
+        $lastImages = $user->images()
+        ->orderBy('created_at', 'desc')
+        ->take(3)
+        ->get();
+
         $profilePicture = $user->profile_picture ? asset('profile_pictures/'.$user->profile_picture) : null;
 
-        return view('users.show', compact('user','age','months', 'profilePicture'));
+        return view('users.show', compact('user','age','months', 'lastImages', 'profilePicture'));
     }
 
     /**

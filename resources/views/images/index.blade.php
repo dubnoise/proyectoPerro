@@ -7,11 +7,6 @@
     @include('partials.header')
 </header>
 
-<h1>Galería de Mascotas</h1>
-
-<!-- Botón para subir nueva imagen -->
-<a href="{{ route('images.create') }}" class="btn-subir">📤 Subir nueva imagen</a>
-
 <!-- Mensajes de éxito -->
 @if(session('success'))
     <p class="success">{{ session('success') }}</p>

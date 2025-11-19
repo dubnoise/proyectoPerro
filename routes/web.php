@@ -28,3 +28,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('images', ImageController::class);
 });
 
+Route::get('/users/{user}/images', [ImageController::class, 'userImages'])
+    ->name('users.images');

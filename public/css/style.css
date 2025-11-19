@@ -280,6 +280,145 @@ body {
     margin: 8px 0;
 }
 
+.user-gallery-preview {
+    background: #fffdf7;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.user-gallery-preview .header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.btn-ver-todas {
+    padding: 8px 14px;
+    background: #86c7ff;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.btn-ver-todas:hover {
+    background: #5bb2ff;
+}
+
+.preview-images {
+    display: flex;
+    gap: 10px;
+}
+
+.mini-photo {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #cde7ff;
+    transition: transform 0.2s ease;
+}
+
+.mini-photo:hover {
+    transform: scale(1.05);
+}
+
+.no-photos {
+    color: #888;
+    font-style: italic;
+}
+
+/* CONTENEDOR GENERAL */
+.gallery-container {
+    padding-top: 120px; /* evita solapamiento con header */
+    max-width: 900px;
+    margin: auto;
+    padding-bottom: 40px;
+}
+
+/* TÍTULO */
+.gallery-title {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #3a3a3a;
+}
+
+/* BOTÓN VOLVER */
+.btn-volver {
+    display: inline-block;
+    padding: 8px 14px;
+    background: #86c7ff;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: 0.2s ease;
+}
+
+.btn-volver:hover {
+    background: #5bb2ff;
+}
+
+/* GRID DE IMÁGENES */
+.images-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+/* TARJETAS DE IMAGEN */
+.image-card {
+    background: #fffdf7;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease;
+}
+
+.image-card:hover {
+    transform: translateY(-4px);
+}
+
+/* IMAGEN */
+.image-item {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+/* INFORMACIÓN DE CADA IMAGEN */
+.image-info {
+    padding: 12px 15px;
+}
+
+.image-title {
+    font-size: 17px;
+    margin: 0;
+    color: #333;
+    font-weight: 600;
+}
+
+.image-date {
+    font-size: 13px;
+    color: #777;
+}
+
+/* SIN IMÁGENES */
+.no-images {
+    text-align: center;
+    font-size: 18px;
+    color: #888;
+    font-style: italic;
+    margin-top: 40px;
+}
+
+
 @media screen and (max-width: 600px) {
     .pet-card {
         margin: 20px;

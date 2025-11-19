@@ -12,6 +12,19 @@
 <body>
 
     @yield('contenido')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                title: "¡Imagen subida!",
+                text: "{{ session('success') }}",
+                icon: "success",
+                timer: 2000,
+                timerProgressBar: true,
+                showConfirmButton: false
+            });
+        </script>
+    @endif
 
 </body>
 </html>

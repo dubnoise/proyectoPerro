@@ -34,6 +34,26 @@
             <p><strong>Dueño:</strong> {{ $user->owner }}</p>
         </div>
     </div>
+    <div class="user-gallery-preview">
+
+    <div class="header-section">
+        <h3>Fotos de {{ $user->name }}</h3>
+
+        <a href="{{ route('users.images', $user->id) }}" class="btn-ver-todas">
+            Ver todas las fotos
+        </a>
+    </div>
+
+    <div class="preview-images">
+        @forelse ($lastImages as $image)
+            <img src="{{ asset('storage/uploads/' . $image->filename) }}" alt="foto" class="mini-photo">
+        @empty
+            <p class="no-photos">Este usuario aún no ha subido imágenes.</p>
+        @endforelse
+    </div>
+
+</div>
+
 </main>
 
 @endsection

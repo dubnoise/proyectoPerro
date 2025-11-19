@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Image;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,7 +55,7 @@ class ImageController extends Controller
         $filename = time() . '_' . $imageFile->getClientOriginalName();
 
         // Guardar en carpeta public/uploads
-        $imageFile->move(public_path('uploads'), $filename);
+        $imageFile->storeAs('public/uploads', $filename);
 
         /** @var \App\Models\Image $image */
         $image = new Image();
@@ -63,7 +64,9 @@ class ImageController extends Controller
         $image->user_id = $user->id;
         $image->save();
 
-        return redirect()->route('images.index')->with('success', 'Imagen subida correctamente');
+        return redirect()
+            ->route('home')
+            ->with('success', 'Imagen subida correctamente');
     }
 
     /**
@@ -168,4 +171,11 @@ class ImageController extends Controller
 
         return redirect()->route('images.index')->with('success', 'Imagen eliminada correctamente');
     }
+
+    public function userImages(User $user)
+    {
+        $images = $user->images()->latest()->get();
+        return view('images.user_gallery', compact('user', 'images'));
+    }
+
 }
