@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('titulo', 'Tuenti')
+@section('titulo', 'Editar perfil')
 
 @section('contenido')
 
@@ -45,6 +45,54 @@
                     <div class="error">{{ $message }}</div>
                 @enderror
 
+                <label for="instagram">Instagram</label>
+                <input
+                    type="text"
+                    name="instagram"
+                    id="instagram"
+                    value="{{ old('instagram', $user->instagram) }}"
+                    placeholder="@nombre"
+                >
+                @error('instagram')
+                    <div class="error">{{ $message }}</div>
+                @enderror
+
+                {{-- <label for="facebook">Facebook</label>
+                <input
+                    type="text"
+                    name="facebook"
+                    id="facebook"
+                    value="{{ old('facebook', $user->facebook) }}"
+                    placeholder="@nombre"
+                >
+                @error('facebook')
+                    <div class="error">{{ $message }}</div>
+                @enderror --}}
+
+                <label for="tiktok">TikTok</label>
+                <input
+                    type="text"
+                    name="tiktok"
+                    id="tiktok"
+                    value="{{ old('tiktok', $user->tiktok) }}"
+                    placeholder="@nombre"
+                >
+                @error('tiktok')
+                    <div class="error">{{ $message }}</div>
+                @enderror
+
+                <label for="twitter">Twitter (X)</label>
+                <input
+                    type="text"
+                    name="twitter"
+                    id="twitter"
+                    value="{{ old('twitter', $user->twitter) }}"
+                    placeholder="@nombre"
+                >
+                @error('twitter')
+                    <div class="error">{{ $message }}</div>
+                @enderror
+
                 {{-- Imagen de perfil --}}
                 <div class="profile-picture-group">
                     <label for="profile_picture">Foto de perfil</label>
@@ -60,6 +108,28 @@
         </form>
     </div>
 </main>
+
+@php
+    function socialLink($handler, $platform) {
+        if (!$handler) return null;
+
+        // Eliminar espacios y asegurar que empieza por @
+        $handler = trim($handler);
+        if ($handler[0] !== '@') {
+            $handler = '@' . $handler;
+        }
+
+        // Quitar @ para formar links
+        $username = ltrim($handler, '@');
+
+        return match($platform) {
+            'instagram' => "https://instagram.com/$username",
+            'tiktok' => "https://tiktok.com/@$username",
+            'facebook' => "https://facebook.com/$username",
+            'twitter' => "https://twitter.com/$username",
+        };
+    }
+@endphp
 
 {{-- Script para preview --}}
 <script>

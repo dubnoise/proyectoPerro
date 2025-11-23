@@ -66,7 +66,7 @@ class ImageController extends Controller
 
         return redirect()
             ->route('home')
-            ->with('success', 'Imagen subida correctamente');
+            ->with('success', 'Imagen subida correctamente!');
     }
 
     /**

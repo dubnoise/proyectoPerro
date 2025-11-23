@@ -86,7 +86,13 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email,'.$user->id,
             'password' => 'nullable|string|confirmed',
             'profile_picture' => 'nullable|image|max:2048',
-        ], [
+             // Redes sociales: solo permiten el formato "@nombre"
+            'instagram' => 'nullable|regex:/^@[A-Za-z0-9._]+$/|max:50',
+            'tiktok'    => 'nullable|regex:/^@[A-Za-z0-9._]+$/|max:50',
+            'twitter'   => 'nullable|regex:/^@[A-Za-z0-9._]+$/|max:50',
+            'facebook'  => 'nullable|regex:/^@[A-Za-z0-9._]+$/|max:50',
+        ],
+        [
             'name.required' => 'El nombre es obligatorio.',
             'name.max' => 'El nombre no puede tener más de 50 carácteres.',
             'surname.max' => 'El apellido no puede tener más de 50 carácteres.',
@@ -96,11 +102,19 @@ class UserController extends Controller
             'password.confirmed' => 'Las contraseñas no coinciden.',
             'profile_picture.image' => 'El archivo debe ser una imagen.',
             'profile_picture.max' => 'La imagen no puede ser mayor a 2MB.',
+            'instagram.regex' => 'El usuario de Instagram debe empezar por @ y contener solo letras, números, . o _',
+            'tiktok.regex'    => 'El usuario de TikTok debe empezar por @ y contener solo letras, números, . o _',
+            'twitter.regex'   => 'El usuario de Twitter debe empezar por @ y contener solo letras, números, . o _',
+            'facebook.regex'  => 'El usuario de Facebook debe empezar por @ y contener solo letras, números, . o _',
         ]);
 
         $user->name = $request->input('name');
         $user->surname = $request->input('surname');
         $user->email = $request->input('email');
+        $user->instagram = $request->instagram;
+        $user->facebook = $request->facebook;
+        $user->tiktok = $request->tiktok;
+        $user->twitter = $request->twitter;
 
         if ($request->has('password') && $request->has('password_confirmation') && $request->input('password') != '') {
             $password = $request->input('password');

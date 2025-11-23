@@ -31,6 +31,10 @@ class User extends Authenticatable
         'colour',
         'genre',
         'owner',
+        'instagram',
+        'facebook',
+        'tiktok',
+        'twitter',
     ];
 
     /**

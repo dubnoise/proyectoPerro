@@ -20,7 +20,6 @@
 
         <div class="pet-info">
             <h2>{{ $user->name }}</h2>
-            <p><strong>Correo:</strong> {{ $user->email }}</p>
             <p><strong>País:</strong> {{ $user->country }}</p>
             <p><strong>Ciudad:</strong> {{ $user->city }}</p>
             @if ($age == 0)
@@ -32,6 +31,50 @@
             <p><strong>Color:</strong> {{ $user->colour }}</p>
             <p><strong>Género:</strong> {{ $user->genre }}</p>
             <p><strong>Dueño:</strong> {{ $user->owner }}</p>
+            {{-- Redes del dueño --}}
+<div class="owner-social-section">
+    <h3 class="owner-social-title">Redes sociales del dueño</h3>
+
+    <div class="social-links">
+
+        @if($user->instagram)
+            <a href="https://instagram.com/{{ ltrim($user->instagram, '@') }}"
+               target="_blank"
+               class="social-item">
+                <img src="{{ asset('img/instagram.png') }}" class="icono-red">
+                <span class="social-name">{{ ltrim($user->instagram, '@') }}</span>
+            </a>
+        @endif
+
+        @if($user->twitter)
+            <a href="https://twitter.com/{{ ltrim($user->twitter, '@') }}"
+               target="_blank"
+               class="social-item">
+                <img src="{{ asset('img/twitter.png') }}" class="icono-red">
+                <span class="social-name">{{ ltrim($user->twitter, '@') }}</span>
+            </a>
+        @endif
+
+        @if($user->facebook)
+            <a href="https://facebook.com/{{ ltrim($user->facebook, '@') }}"
+               target="_blank"
+               class="social-item">
+                <img src="{{ asset('img/facebook.png') }}" class="icono-red">
+                <span class="social-name">{{ ltrim($user->facebook, '@') }}</span>
+            </a>
+        @endif
+
+        @if($user->tiktok)
+            <a href="https://www.tiktok.com/@{{ ltrim($user->tiktok, '@') }}"
+               target="_blank"
+               class="social-item">
+                <img src="{{ asset('img/tiktok.png') }}" class="icono-red">
+                <span class="social-name">{{ ltrim($user->tiktok, '@') }}</span>
+            </a>
+        @endif
+
+    </div>
+</div>
         </div>
     </div>
     <div class="user-gallery-preview">
