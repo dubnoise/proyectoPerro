@@ -26,63 +26,53 @@ main {
     height: auto !important;
 }
 
-
 /* =========================================
-   CABECERA SUPER LLAMATIVA Y MODERNA
+   NUEVA CABECERA MODERNA Y REDUCIDA
 ========================================= */
 .header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 80px;
+    height: 56px; /* MÁS PEQUEÑA */
     padding: 0 25px;
 
-    /* ✨ Fondo más intenso y vibrante */
-    background: linear-gradient(135deg,
-        #ffb7b171 0%,
-        #ffd3a5b6 25%,
-        #b0ffceb2 75%,
-        #9ffcf738 100%
-    );
+    /* NUEVO FONDO: degradado moderno frío */
+    background: linear-gradient(135deg, rgba(80,130,255,0.35), rgba(120,220,255,0.35));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 
-    /* Efecto cristal moderno */
-    backdrop-filter: blur(10px) brightness(1.1);
+    border-bottom: 1px solid rgba(255,255,255,0.35);
 
     display: flex;
-    justify-content: center;
+    justify-content: center;  /* Centrado REAL */
     align-items: center;
-    gap: 40px;
+    gap: 35px;
 
-    /* Sombra más marcada */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
     z-index: 9999;
-
-    /* Transición suave al hacer scroll */
-    transition: background 0.35s ease, height 0.35s ease;
 }
 
-/* Enlaces de cabecera */
+/* ❗ SOLUCIÓN: evitar que la cabecera tape el contenido */
+body {
+    padding-top: 70px; /* Ajustado a tu header de 56px */
+}
+
+/* Enlaces */
 .header a {
     text-decoration: none;
     display: flex;
     align-items: center;
 }
 
-/* =========================================
-   BOTÓN HOME
-========================================= */
+/* Botón Home – NUEVO ESTILO */
 .home {
-    width: 58px;
-    height: 58px;
+    width: 38px;
+    height: 38px;
 
-    background: #ffffffcc;
-    border: 2px solid #b88a62;
-
-    border-radius: 50%;
+    background: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.75);
+    border-radius: 12px;
 
     display: flex;
     justify-content: center;
@@ -90,68 +80,63 @@ main {
 
     cursor: pointer;
 
-    /* Transiciones suaves */
-    transition:
-        transform 0.25s ease,
-        background-color 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.25s ease;
+    transition: background 0.25s ease,
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
 }
 
-/* Hover animado */
 .home:hover {
-    background-color: #fff4e6;
-    border-color: #8b5e3c;
-    transform: translateY(-4px) scale(1.12);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+    background: rgba(255,255,255,0.9);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
 }
 
+/* Icono */
 .home img {
-    width: 28px;
-    height: 28px;
-    pointer-events: none;
+    width: 20px;
+    height: 20px;
 }
 
 /* =========================================
    RESPONSIVE
 ========================================= */
-@media (max-width: 768px) {
+@media(max-width: 768px) {
     .header {
-        height: 70px;
-        gap: 25px;
-        padding: 0 18px;
-    }
-
-    body {
-        padding-top: 90px;
+        height: 52px;
+        gap: 18px;
     }
 
     .home {
-        width: 50px;
-        height: 50px;
+        width: 34px;
+        height: 34px;
     }
 
     .home img {
-        width: 24px;
-        height: 24px;
+        width: 18px;
+        height: 18px;
+    }
+
+    /* Ajuste en móvil */
+    body {
+        padding-top: 60px;
     }
 }
 
-@media (max-width: 480px) {
+@media(max-width: 480px) {
     .header {
-        height: 62px;
-        gap: 15px;
+        height: 50px;
         padding: 0 12px;
+        gap: 12px;
     }
 
     .home {
-        width: 44px;
-        height: 44px;
+        width: 32px;
+        height: 32px;
     }
 
     .home img {
-        width: 22px;
-        height: 22px;
+        width: 17px;
+        height: 17px;
     }
 }
 
@@ -431,6 +416,60 @@ body {
     }
 }
 
+/* ------------------------------
+   IMAGEN DE PERFIL CLICABLE
+------------------------------- */
+.pet-avatar img.profile-clickable {
+    cursor: pointer;
+    transition: transform 0.25s ease;
+}
+
+.pet-avatar img.profile-clickable:hover {
+    transform: scale(1.07);
+}
+
+/* ------------------------------
+   MODAL / LIGHTBOX
+------------------------------- */
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    padding-top: 70px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content-img {
+    display: block;
+    margin: auto;
+    max-width: 85%;
+    max-height: 85%;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(255,255,255,0.35);
+}
+
+/* Botón cerrar */
+.close-btn {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    color: #fff;
+    font-size: 45px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.close-btn:hover {
+    color: #ddd;
+}
+
+
 /* =========================================
    GALERÍA DE FOTOS
 ========================================= */
@@ -692,4 +731,23 @@ label {
 /* === Scroll interno si es necesario === */
 .form-registro {
     overflow-y: auto;
+}
+
+
+
+/* PARA QUE LA CABECERA NO TAPE CONTENIDO */
+body {
+    padding-top: 65px;
+}
+
+@media(max-width: 768px) {
+    body {
+        padding-top: 60px;
+    }
+}
+
+@media(max-width: 480px) {
+    body {
+        padding-top: 56px;
+    }
 }

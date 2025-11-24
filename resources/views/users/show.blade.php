@@ -11,11 +11,22 @@
 <main class="pet-profile-container">
     <div class="pet-card">
         <div class="pet-avatar">
-            @if ($profilePicture)
-                <img src="{{ $profilePicture }}" alt="{{ $user->profile_picture }}">
-            @else
-                <img src="{{ asset('profile_pictures/perro-perfil.jpg') }}" alt="default">
-            @endif
+            @php
+                $finalProfilePic = $profilePicture ?? asset('profile_pictures/perro-perfil.jpg');
+            @endphp
+
+            <img
+                src="{{ $finalProfilePic }}"
+                alt="Foto de perfil"
+                class="profile-clickable"
+                onclick="openImageModal('{{ $finalProfilePic }}')"
+            >
+        </div>
+
+        <!-- Modal / Lightbox -->
+        <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+            <span class="close-btn">&times;</span>
+            <img id="modalImage" class="modal-content-img">
         </div>
 
         <div class="pet-info">
@@ -79,24 +90,36 @@
     </div>
     <div class="user-gallery-preview">
 
-    <div class="header-section">
-        <h3>Fotos de {{ $user->name }}</h3>
+        <div class="header-section">
+            <h3>Fotos de {{ $user->name }}</h3>
 
-        <a href="{{ route('users.images', $user->id) }}" class="btn-ver-todas">
-            Ver todas las fotos
-        </a>
+            <a href="{{ route('users.images', $user->id) }}" class="btn-ver-todas">
+                Ver todas las fotos
+            </a>
+        </div>
+
+        <div class="preview-images">
+            @forelse ($lastImages as $image)
+                <img src="{{ asset('uploads/' . $image->filename) }}" alt="foto" class="mini-photo">
+            @empty
+                <p class="no-photos">Este usuario aún no ha subido imágenes.</p>
+            @endforelse
+        </div>
+
     </div>
-
-    <div class="preview-images">
-        @forelse ($lastImages as $image)
-            <img src="{{ asset('storage/uploads/' . $image->filename) }}" alt="foto" class="mini-photo">
-        @empty
-            <p class="no-photos">Este usuario aún no ha subido imágenes.</p>
-        @endforelse
-    </div>
-
-</div>
 
 </main>
 
 @endsection
+
+<script>
+function openImageModal(imgSrc) {
+    document.getElementById("imageModal").style.display = "block";
+    document.getElementById("modalImage").src = imgSrc;
+}
+
+function closeImageModal() {
+    document.getElementById("imageModal").style.display = "none";
+}
+</script>
+

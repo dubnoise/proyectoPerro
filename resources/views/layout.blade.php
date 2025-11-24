@@ -19,7 +19,7 @@
                 title: "¡Imagen subida!",
                 text: "{{ session('success') }}",
                 icon: "success",
-                timer: 2000,
+                timer: 1500,
                 timerProgressBar: true,
                 showConfirmButton: false
             });

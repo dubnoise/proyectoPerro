@@ -55,8 +55,8 @@ class ImageController extends Controller
         $filename = time() . '_' . $imageFile->getClientOriginalName();
 
         // Guardar en carpeta public/uploads
-        $imageFile->storeAs('public/uploads', $filename);
-
+        // $imageFile->storeAs('public/uploads', $filename);
+        $imageFile->move(public_path('uploads'), $filename);
         /** @var \App\Models\Image $image */
         $image = new Image();
         $image->title = $request->title;

@@ -20,7 +20,7 @@
         @forelse($images as $image)
             <div class="image-card">
 
-                <img src="{{ asset('storage/uploads/' . $image->filename) }}" alt="Imagen" class="image-item">
+                <img src="{{ asset('uploads/' . $image->filename) }}" alt="Imagen" class="image-item">
 
                 <div class="image-info">
                     <h4 class="image-title">{{ $image->title }}</h4>

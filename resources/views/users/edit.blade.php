@@ -93,6 +93,12 @@
                     <div class="error">{{ $message }}</div>
                 @enderror
 
+                <label for="owner">Dueño</label>
+                <input type="text" name="owner" id="owner" value="{{ old('owner', $user->owner) }}">
+                @error('owner')
+                    <div class="error">{{ $message }}</div>
+                @enderror
+
                 {{-- Imagen de perfil --}}
                 <div class="profile-picture-group">
                     <label for="profile_picture">Foto de perfil</label>

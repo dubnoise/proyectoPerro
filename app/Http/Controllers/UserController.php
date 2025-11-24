@@ -91,6 +91,7 @@ class UserController extends Controller
             'tiktok'    => 'nullable|regex:/^@[A-Za-z0-9._]+$/|max:50',
             'twitter'   => 'nullable|regex:/^@[A-Za-z0-9._]+$/|max:50',
             'facebook'  => 'nullable|regex:/^@[A-Za-z0-9._]+$/|max:50',
+            'owner' => 'required|string|max:50',
         ],
         [
             'name.required' => 'El nombre es obligatorio.',
@@ -106,6 +107,7 @@ class UserController extends Controller
             'tiktok.regex'    => 'El usuario de TikTok debe empezar por @ y contener solo letras, números, . o _',
             'twitter.regex'   => 'El usuario de Twitter debe empezar por @ y contener solo letras, números, . o _',
             'facebook.regex'  => 'El usuario de Facebook debe empezar por @ y contener solo letras, números, . o _',
+            'owner.max' => 'El nombre del dueño no puede tener más de 50 carácteres.',
         ]);
 
         $user->name = $request->input('name');
@@ -115,6 +117,7 @@ class UserController extends Controller
         $user->facebook = $request->facebook;
         $user->tiktok = $request->tiktok;
         $user->twitter = $request->twitter;
+        $user->owner = $request->input('owner');
 
         if ($request->has('password') && $request->has('password_confirmation') && $request->input('password') != '') {
             $password = $request->input('password');
@@ -134,7 +137,6 @@ class UserController extends Controller
                 unlink($oldPath);
             }
         }
-
             // Guardar la nueva imagen
             $profilePicture = $request->file('profile_picture');
             $filename = time() . '_' . $profilePicture->getClientOriginalName(); // Evita nombres duplicados
