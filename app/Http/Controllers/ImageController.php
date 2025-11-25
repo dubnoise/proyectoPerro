@@ -6,6 +6,7 @@ use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Like;
 
 class ImageController extends Controller
 {
@@ -75,16 +76,51 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\View\View
      */
+
     public function show($id)
-    {
-        /** @var \App\Models\Image $image */
-        $image = Image::findOrFail($id);
+{
+    /** @var \App\Models\Image $image */
+    $image = Image::withCount('likes')->findOrFail($id);
 
-        /** @var \App\Models\User $owner */
-        $owner = $image->user;
+    /** @var \App\Models\User $user */
+    $user = $image->user;
 
-        return view('images.show', compact('image', 'owner'));
+    /** @var \App\Models\User $auth */
+    $auth = Auth::user();
+
+    // IMAGEN SIGUIENTE
+    $next = Image::where('user_id', $user->id)
+        ->where('id', '>', $image->id)
+        ->orderBy('id', 'asc')
+        ->first();
+
+    // IMAGEN ANTERIOR
+    $prev = Image::where('user_id', $user->id)
+        ->where('id', '<', $image->id)
+        ->orderBy('id', 'desc')
+        ->first();
+
+    // COLECCIÓN DE IMÁGENES CON LIKES + SI EL USER HA DADO LIKE
+    $images = Image::withCount('likes')
+        ->with([
+            'likes' => function ($q) use ($auth) {
+                if ($auth) {
+                    $q->where('user_id', $auth->id);
+                }
+            }
+        ])
+        ->where('user_id', $user->id)
+        ->orderBy('id', 'asc')
+        ->get();
+
+    // ¿Usuario logueado ha dado like a esta imagen?
+    $hasLiked = false;
+    if ($auth) {
+        $hasLiked = $image->likes()->where('user_id', $auth->id)->exists();
     }
+
+    return view('images.show', compact('image', 'user', 'next', 'prev', 'images', 'hasLiked'));
+}
 
     /**
      * Mostrar el formulario para editar una imagen.
@@ -177,5 +213,6 @@ class ImageController extends Controller
         $images = $user->images()->latest()->get();
         return view('images.user_gallery', compact('user', 'images'));
     }
+
 
 }

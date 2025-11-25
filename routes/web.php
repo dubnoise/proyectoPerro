@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ImageLikeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -30,3 +31,10 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/users/{user}/images', [ImageController::class, 'userImages'])
     ->name('users.images');
+
+Route::get('/images/{image}', [ImageController::class, 'show'])
+->name('images.show');
+
+Route::post('/images/{id}/like', [ImageLikeController::class, 'toggle'])
+    ->name('images.toggle_like')
+    ->middleware('auth');

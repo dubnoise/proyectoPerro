@@ -20,7 +20,9 @@
         @forelse($images as $image)
             <div class="image-card">
 
-                <img src="{{ asset('uploads/' . $image->filename) }}" alt="Imagen" class="image-item">
+                <a href="{{ route('images.show', $image->id) }}">
+                    <img src="{{ asset('uploads/' . $image->filename) }}" alt="Imagen" class="image-item">
+                </a>
 
                 <div class="image-info">
                     <h4 class="image-title">{{ $image->title }}</h4>
