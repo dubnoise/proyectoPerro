@@ -6,7 +6,7 @@ use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Like;
+use App\Models\ImageLike;
 
 class ImageController extends Controller
 {
@@ -214,5 +214,41 @@ class ImageController extends Controller
         return view('images.user_gallery', compact('user', 'images'));
     }
 
+    public function toggleLike(Image $image, Request $request)
+{
+    // requiere login (ruta protegida por middleware('auth'))
+    $user = Auth::user();
+
+    if (!$user) {
+        return response()->json(['status' => 'error', 'message' => 'Unauthorized'], 401);
+    }
+
+    // buscar like existente
+    $existing = ImageLike::where('image_id', $image->id)
+                         ->where('user_id', $user->id)
+                         ->first();
+
+    if ($existing) {
+        // quitar like
+        $existing->delete();
+        $liked = false;
+    } else {
+        // crear like
+        ImageLike::create([
+            'image_id' => $image->id,
+            'user_id'  => $user->id,
+        ]);
+        $liked = true;
+    }
+
+    // contar likes actualizados
+    $likesCount = ImageLike::where('image_id', $image->id)->count();
+
+    return response()->json([
+        'status' => 'ok',
+        'liked' => $liked,
+        'likes_count' => $likesCount,
+    ]);
+}
 
 }

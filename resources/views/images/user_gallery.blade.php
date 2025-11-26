@@ -4,6 +4,9 @@
 
 @section('contenido')
 
+<link rel="stylesheet" href="{{ asset('css/base.css') }}">
+<link rel="stylesheet" href="{{ asset('css/gallery.css') }}">
+
 <header>
     @include('partials.header')
 </header>

@@ -1,0 +1,130 @@
+/* -------------------------------
+   ESTILOS VISTA INDIVIDUAL
+--------------------------------*/
+.full-image-container {
+    max-width: 1000px;
+    margin: 100px auto 40px auto;
+    text-align: center;
+}
+
+.image-viewer {
+    position: relative;
+}
+
+.fullscreen-img {
+    width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    transition: transform 0.3s ease, filter 0.3s ease;
+    cursor: zoom-in;
+}
+
+/* Zoom al pasar el mouse */
+.fullscreen-img:hover {
+    transform: scale(1.03);
+    filter: brightness(1.05);
+}
+
+/* Cuando está en fullscreen */
+.zoomed {
+    animation: fadeIn .35s ease-out;
+    cursor: zoom-out;
+}
+
+/* Animación al entrar a fullscreen */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* Flechas navegación */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 45px;
+    color: white;
+    text-shadow: 0 0 10px black;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: .2s;
+    user-select: none;
+}
+
+.left-arrow  { left: -50px; }
+.right-arrow { right: -50px; }
+
+.nav-arrow:hover {
+    transform: translateY(-50%) scale(1.15);
+}
+
+/* Barra inferior */
+.image-info-bar {
+    margin-top: 20px;
+    padding: 12px 18px;
+    background: #ffffffd0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.like-box {
+    font-size: 18px;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.like-box:hover {
+    transform: scale(1.15);
+}
+
+/* Botón Volver */
+.btn-back {
+    color: #0075ff;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+.like-block {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* JS button */
+.btn-like-js {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    transition: transform .15s ease, background .15s ease;
+}
+
+.btn-like-js:hover {
+    transform: translateY(-2px);
+    background: rgba(0,0,0,0.03);
+}
+
+.btn-like-js.liked .like-icon {
+    filter: drop-shadow(0 2px 6px rgba(255,50,50,0.3));
+}
+
+.like-count-js {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Fallback form (hidden visually if JS enabled) */
+.like-form-nojs {
+    display: none;
+}

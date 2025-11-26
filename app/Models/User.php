@@ -65,9 +65,8 @@ class User extends Authenticatable
         return $this->hasMany(Image::class);
     }
 
-    public function likes()
+    public function imageLikes()
     {
         return $this->hasMany(ImageLike::class);
     }
-
 }

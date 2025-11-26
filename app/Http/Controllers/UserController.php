@@ -91,7 +91,7 @@ class UserController extends Controller
             'tiktok'    => 'nullable|regex:/^@[A-Za-z0-9._]+$/|max:50',
             'twitter'   => 'nullable|regex:/^@[A-Za-z0-9._]+$/|max:50',
             'facebook'  => 'nullable|regex:/^@[A-Za-z0-9._]+$/|max:50',
-            'owner' => 'required|string|max:50',
+            'owner'     => 'nullable|string|max:50',
         ],
         [
             'name.required' => 'El nombre es obligatorio.',

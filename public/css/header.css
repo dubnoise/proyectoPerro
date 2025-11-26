@@ -1,0 +1,84 @@
+/* ===========================================================
+   HEADER — Minimal Glassmorphism
+=========================================================== */
+
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.12);
+    --glass-border: rgba(255, 255, 255, 0.25);
+
+    --icon-size: 26px;
+    --icon-hover-scale: 1.08;
+
+    --header-height: 58px;
+}
+
+/* ===== Header principal ===== */
+.glass-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    background: var(--glass-bg);
+    border-bottom: 1px solid var(--glass-border);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 999;
+}
+
+/* ===== Espacio para que el header no tape contenido ===== */
+.header-spacing {
+    height: var(--header-height);
+}
+
+/* ===== Navegación ===== */
+.header-nav {
+    width: 100%;
+    max-width: 500px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 18px;
+}
+
+/* ===== Íconos del menú ===== */
+.nav-item img {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    opacity: 0.85;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+/* Hover */
+.nav-item:hover img {
+    transform: scale(var(--icon-hover-scale));
+    opacity: 1;
+}
+
+/* Botón especial: subir imagen (mucho más sutil ahora) */
+.upload-btn img {
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.25));
+    animation: softPulse 3s infinite ease-in-out;
+}
+
+@keyframes softPulse {
+    0%, 100% { transform: scale(1); opacity: 0.85; }
+    50% { transform: scale(1.09); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 420px) {
+    :root {
+        --icon-size: 23px;
+        --header-height: 52px;
+    }
+}

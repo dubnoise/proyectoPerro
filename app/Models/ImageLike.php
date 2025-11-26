@@ -6,20 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class ImageLike extends Model
 {
-    protected $table = 'image_likes'; // Nombre de la tabla
-
-    protected $fillable = [
-        'user_id',
-        'image_id'
-    ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    protected $table = 'image_likes';
+    protected $fillable = ['image_id', 'user_id'];
 
     public function image()
     {
         return $this->belongsTo(Image::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

@@ -35,6 +35,8 @@ Route::get('/users/{user}/images', [ImageController::class, 'userImages'])
 Route::get('/images/{image}', [ImageController::class, 'show'])
 ->name('images.show');
 
-Route::post('/images/{id}/like', [ImageLikeController::class, 'toggle'])
-    ->name('images.toggle_like')
-    ->middleware('auth');
+Route::middleware('auth')->group(function () {
+    // Otras rutas...
+    Route::post('/images/{image}/toggle-like', [ImageController::class, 'toggleLike'])
+        ->name('images.toggle_like');
+});

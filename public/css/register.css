@@ -1,0 +1,170 @@
+/* =========================================
+   VARIABLES Y CONFIGURACIÓN GLOBAL
+========================================= */
+:root {
+    --color-bg-light: #f5f7fa;
+    --color-bg-light-2: #c3d7e4;
+
+    --color-text-dark: #333;
+    --color-text-medium: #444;
+
+    --color-input-bg: #f9f9f9;
+    --color-input-border: #ccc;
+
+    --color-button: #4e73df;
+    --color-button-hover: #375ac1;
+
+    --radius: 12px;
+    --shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    --transition: 0.3s ease;
+}
+
+/* =========================================
+   CONTENEDOR GENERAL DE LA VISTA
+========================================= */
+.registro {
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    overflow-y: auto;
+    margin: 0 auto;
+    animation: registroFadeIn 0.9s ease;
+}
+
+/* TÍTULO */
+.h4-registro h4 {
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    color: var(--color-text-dark);
+    margin-bottom: 20px;
+}
+
+/* =========================================
+   FORMULARIOS
+========================================= */
+.form-registro form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Etiquetas */
+.form-registro label {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-text-medium);
+    margin-bottom: 4px;
+}
+
+/* Inputs y select */
+.input-registro,
+input[type="date"],
+select {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-input-border);
+    background-color: var(--color-input-bg);
+    transition: border var(--transition);
+}
+
+.input-registro:focus,
+select:focus {
+    border-color: var(--color-button);
+    outline: none;
+}
+
+/* =========================================
+   GÉNERO – Radio Buttons Estilizados
+========================================= */
+.genre-class {
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-input-border);
+    background-color: var(--color-input-bg);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.genre-options {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.genre-options label {
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.genre-options input[type="radio"] {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/* =========================================
+   BOTÓN "CONTINUAR"
+========================================= */
+.continuar input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: var(--radius);
+    background-color: var(--color-button);
+    color: #fff;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.continuar input[type="submit"]:hover {
+    background-color: var(--color-button-hover);
+}
+
+/* =========================================
+   ERRORES DE VALIDACIÓN
+========================================= */
+.errores-registro {
+    background-color: #ffe0e0;
+    color: #b30000;
+    padding: 12px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.error-registro {
+    margin: 4px 0;
+}
+
+/* =========================================
+   LINK DE VOLVER
+========================================= */
+.registro a {
+    display: block;
+    text-align: center;
+    margin-top: 14px;
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--color-button);
+    transition: var(--transition);
+}
+
+.registro a:hover {
+    color: var(--color-button-hover);
+}
+
+/* ---------- ANIMACIÓN ---------- */
+@keyframes registroFadeIn {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+

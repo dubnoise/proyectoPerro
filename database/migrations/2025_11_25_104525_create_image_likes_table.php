@@ -9,18 +9,21 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-       Schema::create('image_likes', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('image_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
+    public function up()
+{
+    Schema::create('image_likes', function (Blueprint $table) {
+        $table->id();
+        $table->unsignedBigInteger('image_id');
+        $table->unsignedBigInteger('user_id');
+        $table->timestamps();
 
-            // Evita duplicados (un usuario sólo puede dar 1 like por imagen)
-            $table->unique(['user_id', 'image_id']);
-        });
-    }
+        $table->unique(['image_id', 'user_id']);
+
+        $table->foreign('image_id')->references('id')->on('images')->onDelete('cascade');
+        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+    });
+}
+
 
     /**
      * Reverse the migrations.

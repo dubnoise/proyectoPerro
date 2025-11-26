@@ -1,0 +1,9 @@
+body[data-theme="dark"] {
+    background: #111 !important;
+}
+
+[data-theme="dark"] .login,
+[data-theme="dark"] .registro {
+    background: var(--color-card-bg);
+    color: var(--color-text);
+}

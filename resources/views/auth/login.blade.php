@@ -1,37 +1,29 @@
 @extends('layout')
 
-@section('titulo', 'Proyecto Perro - Registro')
+@section('titulo', 'Login')
+
+@section('estilos')
+<link rel="stylesheet" href="{{ asset('css/login.css') }}">
+@endsection
 
 @section('contenido')
-    <div class="login">
-        <div class="h4-login">
-            <h4>Login</h4>
-        </div>
+<div class="login-container">
+    <div class="login-card">
+        <h2>Login</h2>
 
-        <div class="form-login">
-            <form action={{route('login')}} method="POST">
-                @csrf
+        <form action="{{ route('login') }}" method="POST">
+            @csrf
 
-                <label for="email">Email</label>
-                <input class="input-login placeholder-effect" type="email" name="email" id="email" placeholder="Introduce tu email">
-                <br>
-                <label for="password">Contraseña</label>
-                <input class="input-login placeholder-effect" type="password" name="password" placeholder="Introduce tu contraseña">
-                <br>
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Introduce tu email" required>
 
-                <div class="continuar">
-                    <input type="submit" value="Continuar">
-                </div>
-            </form>
-            @if (isset($error))
-                <div class="error-login">
-                    <p>{{ $error }}</p>
-                </div>
-            @endif
-        </div>
-        <a href="{{ route('registro') }}">Registarse</a>
+            <label>Contraseña</label>
+            <input type="password" name="password" placeholder="Introduce tu contraseña" required>
+
+            <button type="submit" class="btn">Continuar</button>
+        </form>
+
+        <a class="register-link" href="{{ route('registro') }}">Registrarse</a>
     </div>
-
-
-
+</div>
 @endsection

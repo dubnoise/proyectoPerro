@@ -1,0 +1,221 @@
+/* =========================================
+   RESET / NORMALIZE GENERAL
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* =========================================
+   VARIABLES GENERALES (LIGHT MODE)
+========================================= */
+
+:root {
+    /* Colores base */
+    --color-bg: #f5f7fa;
+    --color-bg-secondary: #ffffff;
+    --color-text: #333;
+    --color-text-light: #555;
+
+    /* Paleta principal */
+    --primary: #4e73df;
+    --primary-hover: #375ac1;
+
+    /* Gradientes */
+    --gradient-main: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+
+    /* Bordes y sombras */
+    --radius: 12px;
+    --shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+
+    /* Inputs */
+    --input-bg: #f9f9f9;
+    --input-border: #ccc;
+
+    /* Animaciones */
+    --transition: 0.3s ease;
+}
+
+/* =========================================
+   MODO OSCURO
+========================================= */
+
+.dark-mode {
+    --color-bg: #1e1e1e;
+    --color-bg-secondary: #2c2c2c;
+    --color-text: #e4e4e4;
+    --color-text-light: #ccc;
+
+    --primary: #8ab4f8;
+    --primary-hover: #5c8fe3;
+
+    --input-bg: #333;
+    --input-border: #555;
+
+    --shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* =========================================
+   ESTILOS GLOBALes
+========================================= */
+
+body {
+    background: var(--gradient-main);
+    color: var(--color-text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main, .page-container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+/* =========================================
+   CONTENEDORES (REUTILIZABLES)
+========================================= */
+
+.card {
+    background: var(--color-bg-secondary);
+    padding: 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    animation: fadeIn 0.8s ease;
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius);
+    padding: 40px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* =========================================
+   TITULOS GENERALES
+========================================= */
+
+h1, h2, h3, h4 {
+    color: var(--color-text);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* =========================================
+   INPUTS Y FORMULARIOS
+========================================= */
+
+label {
+    font-weight: 600;
+    color: var(--color-text-light);
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--input-border);
+    background: var(--input-bg);
+    border-radius: var(--radius);
+    outline: none;
+    font-size: 15px;
+    transition: var(--transition);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    box-shadow: 0 0 0 3px rgba(78, 115, 223, 0.3);
+}
+
+/* =========================================
+   BOTONES GENERALES
+========================================= */
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+    text-align: center;
+}
+
+.btn:hover {
+    background: var(--primary-hover);
+    transform: scale(1.03);
+}
+
+.btn-danger {
+    background: #e74a3b;
+}
+
+.btn-danger:hover {
+    background: #c0392b;
+}
+
+/* =========================================
+   UTILIDADES (MÁRGENES / FLEX)
+========================================= */
+
+.mt-1 { margin-top: 8px; }
+.mt-2 { margin-top: 16px; }
+.mt-3 { margin-top: 24px; }
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+/* =========================================
+   ENLACES
+========================================= */
+
+a {
+    text-decoration: none;
+    color: var(--primary);
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+a:hover {
+    color: var(--primary-hover);
+}
+
+/* =========================================
+   ANIMACIONES
+========================================= */
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.95); }
+    100% { opacity: 1; transform: scale(1); }
+}

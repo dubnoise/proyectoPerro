@@ -1,0 +1,59 @@
+/* =========================================
+   FORMULARIOS GENERALES (EDITAR PERFIL)
+========================================= */
+.central {
+    max-width: 550px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #fffaf4;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.central label {
+    display: block;
+    font-weight: 600;
+    margin-top: 12px;
+}
+
+.central input[type="text"],
+.central input[type="email"],
+.central input[type="password"],
+.central input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.btn-actualizar {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    background: #f4a261;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.btn-actualizar:hover {
+    background: #e76f51;
+}
+
+.error {
+    color: #e63946;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+#preview {
+    display: block;
+    margin-top: 10px;
+    max-width: 120px;
+    border-radius: 10px;
+}
