@@ -1,84 +1,96 @@
-/* ===========================================================
-   HEADER — Minimal Glassmorphism
-=========================================================== */
+/* =========================================
+   HEADER.CSS - Header cristal minimalista
+========================================= */
 
 :root {
-    --glass-bg: rgba(255, 255, 255, 0.12);
-    --glass-border: rgba(255, 255, 255, 0.25);
+  --header-h: 64px;
+  --icon-size: 22px;
+  --gap: 18px;
 
-    --icon-size: 26px;
-    --icon-hover-scale: 1.08;
+  --glass-bg-1: rgba(255,255,255,0.65);
+  --glass-bg-2: rgba(255,255,255,0.20);
 
-    --header-height: 58px;
+  --item-bg: rgba(255,255,255,0.92);
+  --item-border: rgba(0,0,0,0.06);
+  --item-shadow: 0 6px 14px rgba(20,40,80,0.07);
 }
 
-/* ===== Header principal ===== */
+/* ---- HEADER ---- */
 .glass-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: var(--header-height);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-h);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 14px;
+  z-index: 9999;
 
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-
-    background: var(--glass-bg);
-    border-bottom: 1px solid var(--glass-border);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    z-index: 999;
+  background: linear-gradient(180deg, var(--glass-bg-1), var(--glass-bg-2));
+  backdrop-filter: blur(10px) saturate(140%);
+  border-bottom: 1px solid rgba(255,255,255,0.45);
+  box-shadow: 0 6px 18px rgba(10,20,30,0.09);
 }
 
-/* ===== Espacio para que el header no tape contenido ===== */
-.header-spacing {
-    height: var(--header-height);
-}
-
-/* ===== Navegación ===== */
+/* ---- NAV WRAPPER ---- */
 .header-nav {
-    width: 100%;
-    max-width: 500px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 0 18px;
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap);
 }
 
-/* ===== Íconos del menú ===== */
+/* ---- NAV ITEMS (TODOS IGUALES) ---- */
+.nav-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: calc(var(--icon-size) + 20px);
+  height: calc(var(--icon-size) + 20px);
+
+  padding: 6px;
+  border-radius: 12px;
+
+  background: var(--item-bg);
+  border: 1px solid var(--item-border);
+
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
 .nav-item img {
-    width: var(--icon-size);
-    height: var(--icon-size);
-    opacity: 0.85;
-    transition: transform 0.25s ease, opacity 0.25s ease;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(0 0 1px rgba(0,0,0,0.15));
 }
 
-/* Hover */
-.nav-item:hover img {
-    transform: scale(var(--icon-hover-scale));
-    opacity: 1;
+/* ---- HOVER ---- */
+.nav-item:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: var(--item-shadow);
 }
 
-/* Botón especial: subir imagen (mucho más sutil ahora) */
+/* ---- SPECIAL UPLOAD BUTTON ---- */
+/* .upload-btn {
+  background: linear-gradient(135deg, #ffe8ee, #fff4d9);
+  border: 1px solid rgba(255,150,180,0.35);
+}
+
 .upload-btn img {
-    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.25));
-    animation: softPulse 3s infinite ease-in-out;
-}
+  filter: drop-shadow(0 3px 6px rgba(255,100,140,0.25));
+} */
 
-@keyframes softPulse {
-    0%, 100% { transform: scale(1); opacity: 0.85; }
-    50% { transform: scale(1.09); opacity: 1; }
-}
-
-/* Responsive */
-@media (max-width: 420px) {
-    :root {
-        --icon-size: 23px;
-        --header-height: 52px;
-    }
+/* ---- RESPONSIVE ---- */
+@media (max-width: 600px) {
+  :root {
+    --icon-size: 19px;
+    --gap: 12px;
+  }
 }

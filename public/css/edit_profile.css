@@ -1,59 +1,95 @@
-/* =========================================
-   FORMULARIOS GENERALES (EDITAR PERFIL)
-========================================= */
+/* ============================
+   CONTENEDOR PRINCIPAL
+   ============================ */
+main {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Caja principal del formulario */
 .central {
-    max-width: 550px;
-    margin: 40px auto;
-    padding: 30px;
-    background: #fffaf4;
-    border-radius: 14px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 480px;
+    background: #ffffffd9;
+    padding: 25px 30px;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    margin-top: 10px;
 }
 
-.central label {
-    display: block;
+/* ============================
+   FORMULARIO
+   ============================ */
+.form-actualizar-perfil {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
     font-weight: 600;
-    margin-top: 12px;
+    font-size: 15px;
+    margin-bottom: -5px;
 }
 
-.central input[type="text"],
-.central input[type="email"],
-.central input[type="password"],
-.central input[type="file"] {
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"] {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-top: 5px;
-    font-size: 14px;
-}
-
-.btn-actualizar {
-    margin-top: 20px;
-    width: 100%;
-    padding: 12px;
-    background: #f4a261;
-    color: white;
-    border: none;
     border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: .25s;
+    border: 1px solid #bbb;
+    background: #fff;
+    font-size: 15px;
+    transition: 0.25s ease;
 }
 
-.btn-actualizar:hover {
-    background: #e76f51;
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #6aa2ff;
+    box-shadow: 0 0 8px rgba(90, 150, 255, 0.4);
 }
 
-.error {
-    color: #e63946;
-    font-size: 14px;
-    margin-top: 5px;
+/* ============================
+   FOTO DE PERFIL
+   ============================ */
+.profile-picture-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 #preview {
-    display: block;
-    margin-top: 10px;
-    max-width: 120px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 8px;
+    border: 3px solid #e3e3e3;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.15);
+}
+
+/* ============================
+   BOTÓN ACTUALIZAR
+   ============================ */
+.btn-actualizar {
+    margin-top: 15px;
+    padding: 12px;
+    width: 100%;
     border-radius: 10px;
+    background: #4a8fff;
+    color: white;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-actualizar:hover {
+    background: #2e73ff;
+    transform: scale(1.03);
 }

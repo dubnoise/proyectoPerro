@@ -5,20 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Estilos globales -->
     <link rel="stylesheet" href="{{ asset('css/base.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('titulo')</title>
 
-    <!-- Estilos específicos de cada vista -->
     @yield('estilos')
 </head>
 
 <body>
 
-    @yield('contenido')
+    {{-- CONTENIDO DE CADA VISTA --}}
+    <main class="page-container">
+        @yield('contenido')
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

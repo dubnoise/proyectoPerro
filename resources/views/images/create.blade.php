@@ -4,8 +4,9 @@
 
 @section('contenido')
 
-<link rel="stylesheet" href="{{ asset('css/base.css') }}">
-<link rel="stylesheet" href="{{ asset('css/edit_profile.css') }}">
+@section('estilos')
+    <link rel="stylesheet" href="{{ asset('css/image_create.css') }}">
+@endsection
 
 <header>
     @include('partials.header')

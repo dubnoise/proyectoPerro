@@ -31,8 +31,6 @@
             >
         </div>
 
-
-
         <!-- Información del Perro -->
         <div class="pet-info">
             <h2>{{ $user->name }}</h2>
@@ -126,11 +124,16 @@
 
 <script>
 function openImageModal(imgSrc) {
-    document.getElementById("imageModal").style.display = "block";
-    document.getElementById("modalImage").src = imgSrc;
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImage");
+
+    modal.style.display = "flex";
+    modalImg.src = imgSrc;
 }
 
 function closeImageModal() {
     document.getElementById("imageModal").style.display = "none";
 }
 </script>
+
+

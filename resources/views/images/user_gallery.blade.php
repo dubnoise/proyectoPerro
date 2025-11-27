@@ -2,10 +2,11 @@
 
 @section('titulo', 'Galería de ' . $user->name)
 
-@section('contenido')
-
-<link rel="stylesheet" href="{{ asset('css/base.css') }}">
+@section('estilos')
 <link rel="stylesheet" href="{{ asset('css/gallery.css') }}">
+@endsection
+
+@section('contenido')
 
 <header>
     @include('partials.header')

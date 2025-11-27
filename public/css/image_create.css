@@ -1,0 +1,104 @@
+/* ======== CONTENEDOR GENERAL ======== */
+main {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;      /* Antes estaba muy abajo, reducido */
+}
+
+/* Contenedor central */
+.central {
+    width: 90%;
+    max-width: 480px;
+    margin-top: 20px;       /* Subimos aún más la vista */
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(10px);
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    text-align: center;
+}
+
+/* ======== TÍTULO ======== */
+.central h2 {
+    margin-bottom: 20px;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #333;
+}
+
+/* ======== LABELS ======== */
+.central label {
+    display: block;
+    text-align: left;
+    font-weight: 600;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+/* ======== CAMPOS DE TEXTO Y FILE ======== */
+.central input[type="text"],
+.central input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.8);
+    font-size: 1rem;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.12);
+    transition: 0.2s;
+}
+
+.central input[type="text"]:focus,
+.central input[type="file"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #666 inset;
+}
+
+/* ======== PREVIEW ======== */
+#preview {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-top: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    transition: 0.2s;
+}
+
+#preview:hover {
+    transform: scale(1.03);
+}
+
+/* ======== ERRORES ======== */
+.error {
+    margin-top: 5px;
+    background: #ffdddd;
+    padding: 8px;
+    border-left: 4px solid #d00;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #900;
+}
+
+/* ======== BOTÓN ======== */
+.btn-actualizar {
+    margin-top: 25px;
+    width: 100%;
+    padding: 14px;
+    background-color: #4b79ff;
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: 600;
+    box-shadow: 0 6px 14px rgba(75, 121, 255, 0.3);
+}
+
+.btn-actualizar:hover {
+    background-color: #325cff;
+    box-shadow: 0 6px 16px rgba(50, 92, 255, 0.4);
+    transform: scale(1.02);
+}

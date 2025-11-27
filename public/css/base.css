@@ -1,221 +1,111 @@
 /* =========================================
-   RESET / NORMALIZE GENERAL
+   BASE.CSS - Estilos globales (CORE)
+   - Variables, reset, layout principal
+   - NO centrar todo el body aquí
 ========================================= */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Reset */
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root{
+  --header-height: 64px;            /* usado por header + spacing */
+  --max-width: 1200px;
+
+  --bg-gradient: linear-gradient(135deg,#f5f7fa 0%,#e6f0fb 100%);
+  --card-bg: #ffffff;
+  --glass-bg: rgba(255,255,255,0.18);
+
+  --text: #222;
+  --muted: #666;
+
+  --primary: #4e73df;
+  --primary-600: #375ac1;
+
+  --radius: 12px;
+  --shadow: 0 8px 20px rgba(0,0,0,0.08);
+  --transition: 0.25s;
 }
 
+/* Page root - allow normal document flow and scrolling */
 html, body {
-    height: 100%;
-    font-family: 'Poppins', sans-serif;
+  height: 100%;
+  min-height: 100%;
+  font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--bg-gradient);
+  color: var(--text);
+  line-height: 1.4;
 }
 
-/* =========================================
-   VARIABLES GENERALES (LIGHT MODE)
-========================================= */
-
-:root {
-    /* Colores base */
-    --color-bg: #f5f7fa;
-    --color-bg-secondary: #ffffff;
-    --color-text: #333;
-    --color-text-light: #555;
-
-    /* Paleta principal */
-    --primary: #4e73df;
-    --primary-hover: #375ac1;
-
-    /* Gradientes */
-    --gradient-main: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
-
-    /* Bordes y sombras */
-    --radius: 12px;
-    --shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-
-    /* Inputs */
-    --input-bg: #f9f9f9;
-    --input-border: #ccc;
-
-    /* Animaciones */
-    --transition: 0.3s ease;
+/* Main page container used by most views */
+.page-container, main {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-top: calc(var(--header-height) + 18px); /* espaciado extra para respirar */
+  box-sizing: border-box;
 }
 
-/* =========================================
-   MODO OSCURO
-========================================= */
+/* Utility */
+.hidden { display:none !important; }
+.center-inline { display:inline-flex; align-items:center; gap:8px; }
 
-.dark-mode {
-    --color-bg: #1e1e1e;
-    --color-bg-secondary: #2c2c2c;
-    --color-text: #e4e4e4;
-    --color-text-light: #ccc;
-
-    --primary: #8ab4f8;
-    --primary-hover: #5c8fe3;
-
-    --input-bg: #333;
-    --input-border: #555;
-
-    --shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-}
-
-/* =========================================
-   ESTILOS GLOBALes
-========================================= */
-
-body {
-    background: var(--gradient-main);
-    color: var(--color-text);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-main, .page-container {
-    width: 100%;
-    max-width: 1200px;
-    padding: 20px;
-}
-
-/* =========================================
-   CONTENEDORES (REUTILIZABLES)
-========================================= */
-
+/* Cards / glass */
 .card {
-    background: var(--color-bg-secondary);
-    padding: 24px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    animation: fadeIn 0.8s ease;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow);
 }
 
-.glass {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: var(--radius);
-    padding: 40px;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-}
+/* Headings */
+h1,h2,h3,h4{ color:var(--text); margin-bottom:12px; }
 
-/* =========================================
-   TITULOS GENERALES
-========================================= */
-
-h1, h2, h3, h4 {
-    color: var(--color-text);
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-/* =========================================
-   INPUTS Y FORMULARIOS
-========================================= */
-
-label {
-    font-weight: 600;
-    color: var(--color-text-light);
-}
-
-input,
-select,
-textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--input-border);
-    background: var(--input-bg);
-    border-radius: var(--radius);
-    outline: none;
-    font-size: 15px;
-    transition: var(--transition);
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-    box-shadow: 0 0 0 3px rgba(78, 115, 223, 0.3);
-}
-
-/* =========================================
-   BOTONES GENERALES
-========================================= */
-
+/* Buttons */
 .btn {
-    width: 100%;
-    padding: 12px;
-    background: var(--primary);
-    color: white;
-    border: none;
-    border-radius: var(--radius);
-    cursor: pointer;
-    font-weight: bold;
-    transition: var(--transition);
-    text-align: center;
+  display:inline-block;
+  padding:10px 14px;
+  border-radius:10px;
+  border: none;
+  background:var(--primary);
+  color:white;
+  cursor:pointer;
+  transition: transform var(--transition), background var(--transition);
+}
+.btn:hover{ transform: translateY(-2px); background: var(--primary-600); }
+
+/* Forms */
+label { display:block; margin-bottom:6px; color:var(--muted); font-weight:600; }
+input, select, textarea {
+  width:100%;
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid #d7dbe5;
+  background: #fff;
+  font-size:14px;
 }
 
-.btn:hover {
-    background: var(--primary-hover);
-    transform: scale(1.03);
+.glass-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height); /* ya definida en :root */
+  z-index: 9999;
 }
 
-.btn-danger {
-    background: #e74a3b;
-}
+/* Small helpers */
+.mt-8 { margin-top:8px; }
+.mt-16 { margin-top:16px; }
+.text-muted { color:var(--muted); font-size:0.95rem; }
 
-.btn-danger:hover {
-    background: #c0392b;
-}
-
-/* =========================================
-   UTILIDADES (MÁRGENES / FLEX)
-========================================= */
-
-.mt-1 { margin-top: 8px; }
-.mt-2 { margin-top: 16px; }
-.mt-3 { margin-top: 24px; }
-
-.center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.flex-between {
-    display: flex;
-    justify-content: space-between;
-}
-
-.flex {
-    display: flex;
-}
-
-.column {
-    flex-direction: column;
-}
-
-/* =========================================
-   ENLACES
-========================================= */
-
-a {
-    text-decoration: none;
-    color: var(--primary);
-    transition: var(--transition);
-    font-weight: 500;
-}
-
-a:hover {
-    color: var(--primary-hover);
-}
-
-/* =========================================
-   ANIMACIONES
-========================================= */
-
+/* Animation */
 @keyframes fadeIn {
-    0% { opacity: 0; transform: scale(0.95); }
-    100% { opacity: 1; transform: scale(1); }
+  from { opacity:0; transform: translateY(8px); }
+  to { opacity:1; transform: translateY(0); }
+}
+.fade-in { animation: fadeIn 0.6s ease; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .page-container, main { padding:14px; }
 }
