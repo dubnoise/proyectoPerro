@@ -1,0 +1,79 @@
+/* =============================
+   INFO.CSS — Sección Información
+============================= */
+
+.info-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 35px 20px;
+    animation: fadeIn 0.7s ease;
+}
+
+.info-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 35px;
+    color: var(--text);
+}
+
+/* Grid general */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+/* Tarjetas */
+.info-card {
+    background: var(--card-bg);
+    padding: 22px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Títulos */
+.info-card h2 {
+    margin-bottom: 14px;
+    font-size: 1.2rem;
+    color: var(--primary-700);
+}
+
+/* Listas */
+.info-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.info-card ul li {
+    margin-bottom: 8px;
+    padding-left: 14px;
+    position: relative;
+    color: var(--text-600);
+}
+
+.info-card ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+}
+
+/* Animación entrada */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Móvil */
+@media (max-width: 480px) {
+    .info-title {
+        font-size: 1.6rem;
+    }
+}

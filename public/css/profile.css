@@ -156,7 +156,7 @@
 .preview-images {
     display: flex;
     gap: 12px;
-    flex-wrap: wrap;
+    margin-top: 10px;
 }
 
 .preview-images .mini-photo {
@@ -169,8 +169,13 @@
     transition: transform 0.25s;
 }
 
+.mini-photo-link {
+    display: block;
+}
+
 .preview-images .mini-photo:hover {
     transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
 }
 
 .no-photos {

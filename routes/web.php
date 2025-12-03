@@ -22,6 +22,60 @@ Route::get('user/{user}', [UserController::class, 'show'])->name('users.show');
 Route::resource('users', UserController::class);
 
 Route::get('info', [InfoController::class, 'index'])->name('info');
+/* =======================
+      INFORMACIÓN
+======================= */
+Route::prefix('info')->name('info.')->group(function () {
+
+    // Salud
+    Route::prefix('salud')->name('salud.')->group(function () {
+        Route::view('/enfermedades', 'info.salud.enfermedades')->name('enfermedades');
+        Route::view('/veterinario', 'info.salud.veterinario')->name('veterinario');
+        Route::view('/edades', 'info.salud.edades')->name('edades');
+        Route::view('/vacunas', 'info.salud.vacunas')->name('vacunas');
+    });
+
+    // Alimentación
+    Route::prefix('alimentacion')->name('alimentacion.')->group(function () {
+        Route::view('/tipos', 'info.alimentacion.tipos')->name('tipos');
+        Route::view('/dieta', 'info.alimentacion.dieta')->name('dieta');
+        Route::view('/prohibidos', 'info.alimentacion.prohibidos')->name('prohibidos');
+        Route::view('/habitos', 'info.alimentacion.habitos')->name('habitos');
+    });
+
+    // Comportamiento
+    Route::prefix('comportamiento')->name('comportamiento.')->group(function () {
+        Route::view('/ordenes', 'info.comportamiento.ordenes')->name('ordenes');
+        Route::view('/socializacion', 'info.comportamiento.socializacion')->name('socializacion');
+        Route::view('/ansiedad', 'info.comportamiento.ansiedad')->name('ansiedad');
+        Route::view('/juegos', 'info.comportamiento.juegos')->name('juegos');
+    });
+
+    // Cuidado
+    Route::prefix('cuidado')->name('cuidado.')->group(function () {
+        Route::view('/bano', 'info.cuidado.bano')->name('bano');
+        Route::view('/unas', 'info.cuidado.unas')->name('unas');
+        Route::view('/limpieza', 'info.cuidado.limpieza')->name('limpieza');
+        Route::view('/accesorios', 'info.cuidado.accesorios')->name('accesorios');
+    });
+
+    // Razas
+    Route::prefix('razas')->name('razas.')->group(function () {
+        Route::view('/perros', 'info.razas.perros')->name('perros');
+        Route::view('/gatos', 'info.razas.gatos')->name('gatos');
+        Route::view('/otros', 'info.razas.otros')->name('otros');
+    });
+
+    // Emergencias
+    Route::prefix('emergencias')->name('emergencias.')->group(function () {
+        Route::view('/golpe-calor', 'info.emergencias.golpeCalor')->name('golpeCalor');
+        Route::view('/toxicos', 'info.emergencias.toxicos')->name('toxicos');
+        Route::view('/senales', 'info.emergencias.senales')->name('senales');
+        Route::view('/primeros-auxilios', 'info.emergencias.primerosAux')->name('primerosAux');
+    });
+
+});
+
 // Route::resource('info', InfoController::class);
 
 

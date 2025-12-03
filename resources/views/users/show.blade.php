@@ -102,11 +102,13 @@
 
         <div class="preview-images">
             @forelse ($lastImages as $image)
-                <img
-                    src="{{ asset('uploads/' . $image->filename) }}"
-                    alt="foto"
-                    class="mini-photo"
-                >
+                <a href="{{ route('images.show', $image->id) }}" class="mini-photo-link">
+                    <img
+                        src="{{ asset('uploads/' . $image->filename) }}"
+                        alt="foto"
+                        class="mini-photo"
+                    >
+                </a>
             @empty
                 <p class="no-photos">Este usuario aún no ha subido imágenes.</p>
             @endforelse

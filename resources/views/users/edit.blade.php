@@ -59,4 +59,13 @@
     </div>
 </main>
 
+<script>
+document.getElementById('profile_picture').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        document.getElementById('preview').src = URL.createObjectURL(file);
+    }
+});
+</script>
+
 @endsection
