@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ImageLikeController;
 use Illuminate\Support\Facades\Route;
 
@@ -68,10 +69,10 @@ Route::prefix('info')->name('info.')->group(function () {
 
     // Emergencias
     Route::prefix('emergencias')->name('emergencias.')->group(function () {
-        Route::view('/golpe-calor', 'info.emergencias.golpeCalor')->name('golpeCalor');
+        Route::view('/golpe-calor', 'info.emergencias.golpe-calor')->name('golpe-calor');
         Route::view('/toxicos', 'info.emergencias.toxicos')->name('toxicos');
         Route::view('/senales', 'info.emergencias.senales')->name('senales');
-        Route::view('/primeros-auxilios', 'info.emergencias.primerosAux')->name('primerosAux');
+        Route::view('/primeros-auxilios', 'info.emergencias.primeros-auxilios')->name('primeros-auxilios');
     });
 
 });
@@ -94,3 +95,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/images/{image}/toggle-like', [ImageController::class, 'toggleLike'])
         ->name('images.toggle_like');
 });
+
+// comentarios
+Route::post('/images/{id}/comments', [CommentController::class, 'store'])
+     ->name('comments.store')->middleware('auth');
+
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])
+     ->name('comments.destroy')->middleware('auth');
+

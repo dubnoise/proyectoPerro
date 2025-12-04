@@ -31,8 +31,8 @@ html, body {
   height: 100%;
   min-height: 100%;
   font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background: linear-gradient(135deg, #fce9fb, #e6fff5, #fbffe7);
-  background-size: 300% 300%;
+  background: linear-gradient(135deg, #ed9cfd, #9effd8, #efff9f);
+  background-size: 600% 600%;
   animation: bgMove 12s ease infinite;
   color: var(--text);
   line-height: 1.4;

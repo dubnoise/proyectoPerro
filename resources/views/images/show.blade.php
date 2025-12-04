@@ -12,45 +12,51 @@
     @include('partials.header')
 </header>
 
-<main class="full-image-container">
+<main class="image-page">
 
     {{-- BOTÓN VOLVER --}}
     <a href="{{ route('users.images', $user->id) }}" class="btn-back">← Volver</a>
 
-    {{-- CONTENEDOR DE LA IMAGEN --}}
-    <div class="image-viewer">
+    {{-- VISOR DE IMAGEN --}}
+    <section class="viewer-wrapper">
 
-        {{-- FLECHA ANTERIOR --}}
+        {{-- Flecha anterior --}}
         @if($prev)
-            <a href="{{ route('images.show', $prev->id) }}" class="nav-arrow left-arrow">❮</a>
+        <a href="{{ route('images.show', $prev->id) }}" class="nav-arrow left-arrow">❮</a>
         @endif
 
-        {{-- IMAGEN (click → fullscreen) --}}
-        <img
-            id="fullImage"
-            src="{{ asset('uploads/' . $image->filename) }}"
-            alt="{{ $image->title }}"
-            class="fullscreen-img"
-            onclick="toggleFullscreen()"
-        >
+        {{-- Imagen --}}
+        <div class="image-box">
+            <img
+                id="fullImage"
+                src="{{ asset('uploads/' . $image->filename) }}"
+                alt="{{ $image->title }}"
+                class="image-fixed"
+                onclick="toggleFullscreen()"
+            >
+        </div>
 
-        {{-- FLECHA SIGUIENTE --}}
+        {{-- Flecha siguiente --}}
         @if($next)
-            <a href="{{ route('images.show', $next->id) }}" class="nav-arrow right-arrow">❯</a>
+        <a href="{{ route('images.show', $next->id) }}" class="nav-arrow right-arrow">❯</a>
         @endif
-    </div>
+    </section>
 
-    {{-- BARRA INFERIOR --}}
-    <div class="image-info-bar">
-        <span class="image-title">{{ $image->title }}</span>
-        <span class="image-date">{{ $image->created_at->format('d/m/Y') }}</span>
+    {{-- INFORMACIÓN INFERIOR --}}
+    <section class="info-bar">
 
+        <div class="info-left">
+            <h1 class="image-title">{{ $image->title }}</h1>
+            <p class="image-date">{{ $image->created_at->format('d/m/Y') }}</p>
+        </div>
+
+        {{-- BLOQUE DE LIKE --}}
         <div class="like-block">
             <button class="btn-like-js"
                     data-like-url="{{ route('images.toggle_like', $image->id) }}"
                     aria-pressed="{{ (isset($image->likes) && $image->likes->contains('user_id', auth()->id())) ? 'true' : 'false' }}">
                 <span class="like-icon">
-                    @if (isset($image->likes) && $image->likes->contains('user_id', auth()->id()))
+                    @if ($image->likes->contains('user_id', auth()->id()))
                         ❤️
                     @else
                         🤍
@@ -59,28 +65,103 @@
                 <span class="like-count-js">{{ $image->likes_count ?? $image->likes()->count() }}</span>
             </button>
         </div>
-    </div>
+
+    </section>
+
+    {{-- SECCIÓN DE COMENTARIOS --}}
+    <section class="comments-section">
+
+        <h2>Comentarios</h2>
+
+        {{-- Formulario --}}
+        @auth
+        <form action="{{ route('comments.store', $image->id) }}" method="POST" class="comment-form">
+            @csrf
+            <textarea name="content" placeholder="Escribe un comentario..." required></textarea>
+            <button class="intro-comment-btn" type="submit">Comentar</button>
+        </form>
+        @else
+            <p class="login-required">Inicia sesión para comentar.</p>
+        @endauth
+
+        {{-- Lista --}}
+        <div class="comments-list">
+            @foreach ($image->comments as $comment)
+
+            @php
+                // Detectar si el usuario tiene foto o usar la predeterminada
+                $avatar = $comment->user->profile_picture
+                    ? asset('profile_pictures/' . $comment->user->profile_picture)
+                    : asset('profile_pictures/perro-perfil.jpg');
+            @endphp
+
+            <div class="comment-item">
+
+                {{-- AVATAR --}}
+                <div class="comment-avatar">
+                    <a href="{{ route('users.show', $comment->user->id) }}">
+                        <img
+                            src="{{ $avatar }}"
+                            alt="Avatar de {{ $comment->user->name }}"
+                        >
+                    </a>
+                </div>
+
+                {{-- CONTENIDO --}}
+                <div class="comment-content">
+
+                    <div class="comment-top">
+
+                        {{-- NOMBRE DEL USUARIO --}}
+                        <a href="{{ route('users.show', $comment->user->id) }}" class="comment-user-link">
+                            <strong>{{ $comment->user->name }}</strong>
+                        </a>
+
+                        {{-- FECHA --}}
+                        <span class="comment-date">{{ $comment->created_at->diffForHumans() }}</span>
+
+                        {{-- BOTÓN ELIMINAR --}}
+                        @if($comment->user_id === auth()->id())
+                            <form action="{{ route('comments.destroy', $comment) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="delete-comment-btn" title="Eliminar comentario">✖</button>
+                            </form>
+                        @endif
+
+                    </div>
+
+                    <p class="comment-text">{{ $comment->content }}</p>
+
+                </div>
+
+            </div>
+
+            @endforeach
+
+        </div>
+
+    </section>
 
 </main>
 
-{{-- FULLSCREEN SCRIPT --}}
+{{-- SCRIPT FULLSCREEN --}}
 <script>
 function toggleFullscreen() {
     const img = document.getElementById('fullImage');
-
-    if (!document.fullscreenElement) {
-        img.requestFullscreen().catch(err => console.error(err));
-    } else {
-        document.exitFullscreen();
-    }
+    !document.fullscreenElement
+        ? img.requestFullscreen().catch(err => console.error(err))
+        : document.exitFullscreen();
 }
+</script>
 
-// --- script del botón like ---
-document.addEventListener('DOMContentLoaded', function () {
+{{-- SCRIPT LIKE --}}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
     const likeBtn = document.querySelector('.btn-like-js');
     if (!likeBtn) return;
 
-    likeBtn.addEventListener('click', async function () {
+    likeBtn.addEventListener('click', async () => {
         likeBtn.disabled = true;
 
         const url = likeBtn.dataset.likeUrl;
@@ -99,19 +180,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const data = await res.json();
 
-            const iconSpan = likeBtn.querySelector('.like-icon');
-            const countSpan = likeBtn.querySelector('.like-count-js');
-
-            countSpan.textContent = data.likes_count;
-
-            if (data.liked) {
-                iconSpan.textContent = '❤️';
-                likeBtn.setAttribute('aria-pressed', 'true');
-            } else {
-                iconSpan.textContent = '🤍';
-                likeBtn.setAttribute('aria-pressed', 'false');
-            }
-
+            likeBtn.querySelector('.like-count-js').textContent = data.likes_count;
+            likeBtn.querySelector('.like-icon').textContent = data.liked ? '❤️' : '🤍';
+            likeBtn.setAttribute('aria-pressed', data.liked);
         } catch (err) {
             alert('Error al enviar like.');
         } finally {

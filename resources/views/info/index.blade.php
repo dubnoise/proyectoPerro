@@ -19,7 +19,7 @@
     <div class="info-grid">
 
         <!-- SALUD -->
-        <section class="info-card">
+        <section class="info-card info-salud">
             <h2>🐶 Salud y Bienestar</h2>
             <ul>
                 <li><a href="{{ route('info.salud.enfermedades') }}">Enfermedades comunes por especie</a></li>
@@ -30,7 +30,7 @@
         </section>
 
         <!-- ALIMENTACION -->
-        <section class="info-card">
+        <section class="info-card info-alimentacion">
             <h2>🍗 Alimentación</h2>
             <ul>
                 <li><a href="{{ route('info.alimentacion.tipos') }}">Tipos de alimento y recomendaciones</a></li>
@@ -41,7 +41,7 @@
         </section>
 
         <!-- COMPORTAMIENTO -->
-        <section class="info-card">
+        <section class="info-card info-comportamiento">
             <h2>🎓 Comportamiento y Educación</h2>
             <ul>
                 <li><a href="{{ route('info.comportamiento.ordenes') }}">Órdenes básicas</a></li>
@@ -52,7 +52,7 @@
         </section>
 
         <!-- CUIDADO -->
-        <section class="info-card">
+        <section class="info-card info-cuidado">
             <h2>🧼 Cuidado Diario</h2>
             <ul>
                 <li><a href="{{ route('info.cuidado.bano') }}">Baño y cepillado</a></li>
@@ -63,7 +63,7 @@
         </section>
 
         <!-- RAZAS -->
-        <section class="info-card">
+        <section class="info-card info-razas">
             <h2>🐾 Razas y Características</h2>
             <ul>
                 <li><a href="{{ route('info.razas.perros') }}">Razas de perros</a></li>
@@ -73,13 +73,13 @@
         </section>
 
         <!-- EMERGENCIAS -->
-        <section class="info-card">
+        <section class="info-card info-emergencias">
             <h2>🚨 Emergencias Básicas</h2>
             <ul>
-                <li><a href="{{ route('info.emergencias.golpeCalor') }}">Golpes de calor</a></li>
+                <li><a href="{{ route('info.emergencias.golpe-calor') }}">Golpes de calor</a></li>
                 <li><a href="{{ route('info.emergencias.toxicos') }}">Ingesta de tóxicos</a></li>
                 <li><a href="{{ route('info.emergencias.senales') }}">Señales de alarma</a></li>
-                <li><a href="{{ route('info.emergencias.primerosAux') }}">Primeros pasos</a></li>
+                <li><a href="{{ route('info.emergencias.primeros-auxilios') }}">Primeros pasos</a></li>
             </ul>
         </section>
 

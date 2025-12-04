@@ -1,12 +1,12 @@
 /* ===========================
    CONFIGURACIÓN GENERAL
 =========================== */
-body {
+/* body {
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
     background: #f6f7f9;
-}
+} */
 
 /* Contenedor general */
 .gallery-container {

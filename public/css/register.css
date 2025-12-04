@@ -1,9 +1,9 @@
 /* === ESPACIADO GLOBAL PARA EVITAR SER TAPADO POR EL HEADER === */
-body {
+/* body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: #f5f5f5;
-}
+} */
 
 /* === CONTENEDOR PRINCIPAL === */
 .registro {

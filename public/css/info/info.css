@@ -1,79 +1,142 @@
-/* =============================
-   INFO.CSS — Sección Información
-============================= */
+/* =========================================
+   INFO.CSS — Vista principal de Información
+========================================= */
 
+/* CONTENEDOR */
 .info-container {
-    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 35px 20px;
-    animation: fadeIn 0.7s ease;
+    padding: 40px 20px;
 }
 
 .info-title {
     text-align: center;
-    font-size: 2rem;
-    margin-bottom: 35px;
-    color: var(--text);
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    font-weight: 700;
 }
 
-/* Grid general */
+/* GRID */
 .info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
+    gap: 28px;
 }
 
-/* Tarjetas */
+/* TARJETA BASE */
 .info-card {
-    background: var(--card-bg);
-    padding: 22px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    transition: 0.3s ease;
+    border: 1px solid transparent;
 }
 
 .info-card:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
 }
 
-/* Títulos */
 .info-card h2 {
-    margin-bottom: 14px;
-    font-size: 1.2rem;
-    color: var(--primary-700);
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2c2c2c;
 }
 
-/* Listas */
 .info-card ul {
     list-style: none;
-    padding: 0;
+    padding-left: 0;
 }
+
+/* =========================================
+   COLORES DIFERENTES SEGÚN CATEGORÍA
+========================================= */
+
+/* SALUD (azules suaves) */
+.info-salud {
+    background: #e9f1ff;
+    border-color: #bcd1ff;
+}
+
+/* ALIMENTACIÓN (naranja suave) */
+.info-alimentacion {
+    background: #fff3e5;
+    border-color: #ffd3a3;
+}
+
+/* COMPORTAMIENTO (verde menta) */
+.info-comportamiento {
+    background: #e8fff0;
+    border-color: #b6f2cd;
+}
+
+/* CUIDADO (lavanda) */
+.info-cuidado {
+    background: #f4eaff;
+    border-color: #dabfff;
+}
+
+/* RAZAS (amarillo suave) */
+.info-razas {
+    background: #fffde1;
+    border-color: #f4eaa1;
+}
+
+/* EMERGENCIAS (rojo suave) */
+.info-emergencias {
+    background: #ffeaea;
+    border-color: #ffbcbc;
+}
+
+/* =========================================
+   ESTILO DE LOS LINKS — botones animados
+========================================= */
 
 .info-card ul li {
-    margin-bottom: 8px;
-    padding-left: 14px;
-    position: relative;
-    color: var(--text-600);
+    margin-bottom: 12px;
 }
 
-.info-card ul li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    color: var(--primary);
+.info-card ul li a {
+    display: flex;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.65);
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #333;
+    transition: 0.25s ease;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(0,0,0,0.05);
 }
 
-/* Animación entrada */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+.info-card ul li a::after {
+    content: "➜";
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: 0.3s ease;
 }
 
-/* Móvil */
+/* Hover animado */
+.info-card ul li a:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateX(4px);
+    border-color: rgba(0,0,0,0.15);
+}
+
+.info-card ul li a:hover::after {
+    opacity: 1;
+    transform: translateX(4px);
+}
+
+.info-card ul li a:active {
+    transform: scale(0.97);
+}
+
+/* RESPONSIVE */
 @media (max-width: 480px) {
-    .info-title {
-        font-size: 1.6rem;
-    }
+    .info-title { font-size: 1.9rem; }
+    .info-card { padding: 20px; }
+    .info-card ul li a { padding: 10px 14px; }
 }
