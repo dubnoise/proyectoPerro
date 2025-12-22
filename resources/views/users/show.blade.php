@@ -95,7 +95,7 @@
         <div class="header-section">
             <h3>Fotos de {{ $user->name }}</h3>
 
-            <a href="{{ route('users.images', $user->id) }}" class="btn-ver-todas">
+            <a href="{{ route('users.images', $user->username) }}" class="btn-ver-todas">
                 Ver todas las fotos
             </a>
         </div>

@@ -69,4 +69,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(ImageLike::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
 }

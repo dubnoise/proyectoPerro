@@ -1,63 +1,161 @@
-/* =========================================
-   USER CARDS
-========================================= */
+/* =========================
+   ESTRUCTURA GENERAL
+   ========================= */
 
-.user-cards-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 28px;
-    padding: 20px 0;
+.main-content {
+    min-height: 100vh;
+    background: #f5f6f8;
 }
 
-/* CARD */
-.user-card {
-    background: rgba(255,255,255,0.55);
+.home-feed {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px 16px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* =========================
+   BIENVENIDA
+   ========================= */
+
+.bienvenida {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+/* =========================
+   TARJETA DEL FEED
+   ========================= */
+
+.feed-card {
+    background: #ffffff;
     border-radius: 16px;
-    padding: 22px 18px;
-    text-align: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-    backdrop-filter: blur(8px);
-    transition: transform .25s ease, box-shadow .25s ease;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: transform .2s ease, box-shadow .2s ease;
 }
 
-.user-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 14px 28px rgba(0,0,0,0.12);
+.feed-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(0,0,0,0.12);
 }
 
-/* AVATAR */
-.user-avatar {
-    width: 110px;
-    height: 110px;
+/* =========================
+   CABECERA USUARIO
+   ========================= */
+
+.feed-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+}
+
+.feed-user-link {
+    display: flex;
+    align-items: center;
+}
+
+.feed-avatar {
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 14px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
-    border: 3px solid rgba(255,255,255,0.7);
+    border: 2px solid #eee;
 }
 
-/* INFO */
-.user-info h3 {
-    font-size: 1.25rem;
+.feed-username {
+    font-size: 16px;
     font-weight: 600;
     color: #222;
-    margin-bottom: 6px;
-    letter-spacing: 0.3px;
-}
-
-.user-info p {
-    font-size: 0.95rem;
-    color: #666;
-    font-weight: 500;
-}
-
-/* ENLACE GENERAL */
-.user-card a {
     text-decoration: none;
-    color: inherit;
 }
 
-.user-card a:hover h3 {
+.feed-username:hover {
     text-decoration: underline;
-    text-underline-offset: 3px;
 }
+
+/* =========================
+   IMAGEN DEL FEED
+   ========================= */
+
+.feed-image-wrapper {
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(135deg, #ed9cfd55, #9effd853, #efff9f58);
+    animation: bgMove 12s ease infinite;
+    padding: 12px 0;
+}
+
+.feed-image {
+    width: 100%;
+    max-height: 420px;
+    object-fit: contain;
+    border-radius: 12px;
+    transition: transform .25s ease, opacity .25s ease;
+}
+
+.feed-image:hover {
+    transform: scale(1.02);
+    opacity: 0.95;
+}
+
+/* =========================
+   META INFO
+   ========================= */
+
+.feed-meta {
+    padding: 10px 16px 14px;
+}
+
+.feed-time {
+    font-size: 13px;
+    color: #888;
+}
+
+/* =========================
+   TEXTO CUANDO NO HAY FEED
+   ========================= */
+
+.no-users {
+    text-align: center;
+    color: #777;
+    margin-top: 30px;
+}
+
+
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 640px) {
+
+    .home-feed {
+        padding: 16px 12px 30px;
+    }
+
+    .feed-image {
+        width: 94%;
+        max-height: 320px;
+    }
+
+    .feed-avatar {
+        width: 40px;
+        height: 40px;
+    }
+
+    .feed-username {
+        font-size: 15px;
+    }
+}
+

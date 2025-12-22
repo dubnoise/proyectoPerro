@@ -27,6 +27,17 @@
                    placeholder="Introduce el apellido de la mascota" value="{{ old('surname') }}">
             <br>
 
+            {{-- Nombre de usuario --}}
+            <label for="username">Nombre de usuario</label>
+            <input class="input-registro placeholder-effect"
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Ej: maxelperro"
+                value="{{ old('username') }}">
+            <small class="helper-text">Será único y aparecerá en tu perfil</small>
+            <br>
+
             <label for="email">Email del dueño</label>
             <input class="input-registro placeholder-effect" type="email" name="email" id="email"
                    placeholder="Introduce tu email" value="{{ old('email') }}">

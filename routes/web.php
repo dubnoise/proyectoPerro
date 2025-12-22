@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\WalkZoneController;
 use App\Http\Controllers\ImageLikeController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +20,7 @@ Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 
-Route::get('user/{user}', [UserController::class, 'show'])->name('users.show');
+// Route::get('user/{user}', [UserController::class, 'show'])->name('users.show');
 Route::resource('users', UserController::class);
 
 Route::get('info', [InfoController::class, 'index'])->name('info');
@@ -80,11 +81,12 @@ Route::prefix('info')->name('info.')->group(function () {
 // Route::resource('info', InfoController::class);
 
 
-Route::middleware(['auth'])->group(function () {
-    Route::resource('images', ImageController::class);
+Route::middleware('auth')->group(function () {
+    Route::resource('images', ImageController::class)
+        ->except(['show']);
 });
 
-Route::get('/users/{user}/images', [ImageController::class, 'userImages'])
+Route::get('/{user:username}/images', [ImageController::class, 'userImages'])
     ->name('users.images');
 
 Route::get('/images/{image}', [ImageController::class, 'show'])
@@ -103,3 +105,9 @@ Route::post('/images/{id}/comments', [CommentController::class, 'store'])
 Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])
      ->name('comments.destroy')->middleware('auth');
 
+// Vista del mapa
+Route::get('/mapa/zona', [WalkZoneController::class, 'index'])->name('map.zone');
+Route::post('/mapa/zona/guardar', [WalkZoneController::class, 'store'])->name('map.zone.store')->middleware('auth');
+
+Route::get('/{user}', [UserController::class, 'show'])
+    ->name('users.show');

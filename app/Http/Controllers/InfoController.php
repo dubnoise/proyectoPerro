@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Info;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,10 @@ class InfoController extends Controller
      */
     public function index()
     {
-        return view('info.index');
+        $user = Auth::user();
+        return view('info.index', [
+            'user' => $user
+        ]);
     }
 
     /**

@@ -33,7 +33,10 @@ class ImageController extends Controller
      */
     public function create()
     {
-        return view('images.create');
+        $user = Auth::user();
+        return view('images.create', [
+            'user' => $user
+        ]);
     }
 
     /**

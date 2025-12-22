@@ -47,25 +47,33 @@ class UserController extends Controller
      * Display the specified resource.
      */
     public function show(User $user)
-    {
-        // Obtener el usuario del perfil
-        $user = User::findOrFail($user->id);
-        $time = strtotime($user->birthdate);
-        $now = time();
-        $age = ($now-$time)/(60*60*24*365.25);
-        $months = ($age)*12;
-        $age = floor($age);
-        $months = floor($months);
+{
+    // Edad
+    $time = strtotime($user->birthdate);
+    $now = time();
+    $age = floor(($now - $time) / (60 * 60 * 24 * 365.25));
+    $months = $age * 12;
 
-        $lastImages = $user->images()
-        ->orderBy('created_at', 'desc')
+    // Últimas imágenes
+    $lastImages = $user->images()
+        ->latest()
         ->take(3)
         ->get();
 
-        $profilePicture = $user->profile_picture ? asset('profile_pictures/'.$user->profile_picture) : null;
+    // Foto de perfil
+    $profilePicture = $user->profile_picture
+        ? asset('profile_pictures/' . $user->profile_picture)
+        : asset('profile_pictures/perro-perfil.jpg');
 
-        return view('users.show', compact('user','age','months', 'lastImages', 'profilePicture'));
-    }
+    return view('users.show', compact(
+        'user',
+        'age',
+        'months',
+        'lastImages',
+        'profilePicture'
+    ));
+}
+
 
     /**
      * Show the form for editing the specified resource.
@@ -83,6 +91,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:50',
             'surname' => 'max:50',
+            'username' => 'required|string|max:30|alpha_dash|unique:users,username,' . $user->id,
             'email' => 'required|email|unique:users,email,'.$user->id,
             'password' => 'nullable|string|confirmed',
             'profile_picture' => 'nullable|image|max:2048',
@@ -97,6 +106,10 @@ class UserController extends Controller
             'name.required' => 'El nombre es obligatorio.',
             'name.max' => 'El nombre no puede tener más de 50 carácteres.',
             'surname.max' => 'El apellido no puede tener más de 50 carácteres.',
+            'username.required' => 'El nombre de usuario es obligatorio.',
+            'username.unique'   => 'Este nombre de usuario ya está en uso.',
+            'username.alpha_dash' => 'El nombre de usuario solo puede contener letras, números, guiones y guiones bajos.',
+            'username.max' => 'El nombre de usuario no puede tener más de 30 caracteres.',
             'email.required' => 'El correo electrónico es obligatorio.',
             'email.email' => 'El correo electrónico debe ser válido.',
             'email.unique' => 'Este correo electrónico ya está registrado.',
@@ -112,6 +125,7 @@ class UserController extends Controller
 
         $user->name = $request->input('name');
         $user->surname = $request->input('surname');
+        $user->username = $request->input('username');
         $user->email = $request->input('email');
         $user->instagram = $request->instagram;
         $user->facebook = $request->facebook;

@@ -16,7 +16,7 @@
 
     <h2 class="gallery-title">Galería de {{ $user->name }}</h2>
 
-    <a href="{{ route('users.show', $user->id) }}" class="btn-volver">
+    <a href="{{ route('users.show', $user->username) }}" class="btn-volver">
         ← Volver al perfil
     </a>
 

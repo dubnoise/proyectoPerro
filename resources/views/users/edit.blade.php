@@ -14,7 +14,7 @@
 
 <main>
     <div class="central">
-        <form action="{{ route('users.update', auth()->user()->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('users.update', auth()->user()->username) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -25,6 +25,9 @@
 
                 <label for="surname">Apellidos</label>
                 <input type="text" name="surname" id="surname" value="{{ old('surname', $user->surname) }}">
+
+                <label for="username">Nombre de usuario</label>
+                <input type="text" name="username" id="username" value="{{ old('username', $user->username) }}">
 
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" value="{{ old('email', $user->email) }}">
@@ -52,6 +55,14 @@
                     <input type="file" name="profile_picture" id="profile_picture" accept="image/*">
                     <img id="preview" src="{{ $user->profile_picture ? asset('profile_pictures/'.$user->profile_picture) : asset('img/perro-perfil.png') }}">
                 </div>
+
+                 @if ($errors->any())
+                <div class="errores-registro">
+                    @foreach ($errors->all() as $error)
+                    <p class="error-registro">{{ $error }}</p>
+                    @endforeach
+                </div>
+                @endif
 
                 <input class="btn-actualizar" type="submit" value="Actualizar">
             </div>

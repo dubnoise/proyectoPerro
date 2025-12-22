@@ -18,9 +18,13 @@ class HomeController extends Controller
         $users = '';
         if (Auth::check()) {
             $user = Auth::user();
-            $users = User::all();
+            $users = User::where('id', '!=', Auth::id())
+            ->whereHas('images')
+            ->with(['images' => function ($q) {
+                $q->latest()->take(1);
+            }])
+            ->get();
         }
-
         return view('home', compact('user', 'users'));
     }
 

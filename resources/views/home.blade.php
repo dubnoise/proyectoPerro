@@ -2,76 +2,97 @@
 
 @section('titulo', 'Proyecto Perro')
 
-{{-- ARCHIVOS CSS ESPECÍFICOS --}}
 @section('estilos')
 @if (!Auth::check())
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 @else
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-
 @endif
 @endsection
 
 @section('contenido')
 
-
-
-{{-- SI NO ESTÁ LOGEADO, MOSTRAR LOGIN --}}
 @if (!Auth::check())
     @include('auth.login')
-
 @else
 
-    <div class="main-content">
-        {{-- HEADER --}}
-        <header class="main-header">
-            @include('partials.header')
-        </header>
+<div class="main-content">
 
-        {{-- CONTENIDO PRINCIPAL --}}
-        <main class="home-feed">
+    {{-- HEADER --}}
+    <header class="main-header">
+        @include('partials.header')
+    </header>
 
-            {{-- BIENVENIDA PERSONALIZADA --}}
-            <h2 class="bienvenida">
-                @if (auth()->user()->genre == 'Macho')
-                    Bienvenido, {{ auth()->user()->name }} 🐶
-                @else
-                    Bienvenida, {{ auth()->user()->name }} 🐶
-                @endif
-            </h2>
+    {{-- CONTENIDO PRINCIPAL --}}
+    <main class="home-feed">
 
-            {{-- LISTA DE USUARIOS --}}
-            <section class="user-cards-container">
-                @forelse ($users as $user)
-                    @if ($user->id !== auth()->user()->id)
+        {{-- BIENVENIDA --}}
+        <h2 class="bienvenida">
+            @if (auth()->user()->genre == 'Macho')
+                Bienvenido, {{ auth()->user()->name }} 🐶
+            @else
+                Bienvenida, {{ auth()->user()->name }} 🐶
+            @endif
+        </h2>
 
-                        <div class="user-card">
-                            <a href="{{ route('users.show', $user->id) }}">
-                                <img
-                                    src="{{ $user->profile_picture
-                                        ? asset('profile_pictures/' . $user->profile_picture)
-                                        : asset('img/perro-perfil.png') }}"
-                                    alt="{{ $user->name }}"
-                                    class="user-avatar"
-                                >
+        {{-- LISTA DE USUARIOS --}}
+        <section class="home-feed">
 
-                                <div class="user-info">
-                                    <h3>{{ $user->name }}</h3>
-                                    <p>{{ $user->city }}, {{ $user->country }}</p>
-                                </div>
-                            </a>
-                        </div>
+    @forelse ($users as $user)
 
-                    @endif
-                @empty
-                    <p class="no-users">No hay otros usuarios registrados todavía.</p>
-                @endforelse
-            </section>
+        @php
+            $lastImage = $user->images->first();
+        @endphp
 
-        </main>
-    </div>
+        <article class="feed-card">
+
+            {{-- CABECERA USUARIO --}}
+            <div class="feed-user">
+
+                <a href="{{ route('users.show', $user->username) }}" class="feed-user-link">
+                    <img
+                        src="{{ $user->profile_picture
+                            ? asset('profile_pictures/' . $user->profile_picture)
+                            : asset('img/perro-perfil.png') }}"
+                        alt="Avatar {{ $user->name }}"
+                        class="feed-avatar"
+                    >
+                </a>
+
+                <a href="{{ route('users.show', $user->username) }}" class="feed-username">
+                    {{ $user->name }}
+                </a>
+
+            </div>
+
+            {{-- IMAGEN DEL FEED --}}
+            <div class="feed-image-wrapper">
+                <a href="{{ route('images.show', $lastImage->id) }}">
+                    <img
+                        src="{{ asset('uploads/' . $lastImage->filename) }}"
+                        alt="{{ $lastImage->title }}"
+                        class="feed-image"
+                    >
+                </a>
+            </div>
+
+            {{-- TIEMPO --}}
+            <div class="feed-meta">
+                <span class="feed-time">
+                    {{ $lastImage->created_at->diffForHumans() }}
+                </span>
+            </div>
+
+        </article>
+
+    @empty
+        <p class="no-users">No hay imágenes todavía.</p>
+    @endforelse
+
+</section>
+
+    </main>
+</div>
 
 @endif
-
-
 @endsection

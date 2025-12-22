@@ -27,6 +27,7 @@ class RegisterRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:25'],
             'email' => ['required', 'string', 'email', 'unique:users'],
+            'username' => ['required', 'string', 'unique:users'],
             'password' => ['required',
                             // Rules\Password::defaults()
             ],
@@ -42,6 +43,7 @@ class RegisterRequest extends FormRequest
         return [
             'name.required' => 'El nombre es obligatorio',
             'email.required' => 'El email es obligatorio',
+            'username.required' => 'El username es obligatorio',
             'password.required' => 'La contraseña es obligatoria',
             'country.required' => 'El país es obligatorio',
             'city.required' => 'La ciudad es obligatoria',
